@@ -1,0 +1,6 @@
+* text=auto
+
+*.cs text
+*.csproj text
+*.resx text
+*.settings text
