@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace puzlicis
         public Color rezga_krasa;
         public ImageAttributes efekti;
         public gabalins[,] laukums;
+        public System.Reflection.Assembly projekts = System.Reflection.Assembly.GetExecutingAssembly(); 
 
         public class gabalins
         {
@@ -25,9 +27,9 @@ namespace puzlicis
 
         public void speles_dati()
         {
-            attels = new Bitmap(Image.FromFile("attels_01.jpg"), panelis_spele.Width, panelis_spele.Height);
-            rindu_sk = 5;
-            kolonnu_sk = 5;
+            attels = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_01.jpg")), panelis_spele.Width, panelis_spele.Height);
+            rindu_sk = 4;
+            kolonnu_sk = 4;
             kopa_sk = rindu_sk * kolonnu_sk;
             platums = panelis_spele.Width / rindu_sk;
             augstums = panelis_spele.Height / kolonnu_sk;

@@ -75,6 +75,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="atteli\attels_01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="atteli\attels_02.jpg" />
+    <EmbeddedResource Include="atteli\attels_03.jpg" />
+    <EmbeddedResource Include="atteli\attels_04.jpg" />
+    <EmbeddedResource Include="atteli\attels_05.jpg" />
+    <EmbeddedResource Include="atteli\attels_06.jpg" />
+    <EmbeddedResource Include="atteli\attels_07.jpg" />
+    <EmbeddedResource Include="atteli\attels_08.jpg" />
+    <EmbeddedResource Include="atteli\attels_09.jpg" />
+    <EmbeddedResource Include="atteli\attels_10.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

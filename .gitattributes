@@ -4,3 +4,5 @@
 *.csproj text
 *.resx text
 *.settings text
+
+*.jpg binary
