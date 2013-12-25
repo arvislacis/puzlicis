@@ -13,13 +13,14 @@ namespace puzlicis
 {
     public partial class galvena_forma : Form
     {
+        public System.Reflection.Assembly projekts = System.Reflection.Assembly.GetExecutingAssembly();
         public Bitmap attels;
-        public int platums, augstums, rindu_sk, kolonnu_sk, kopa_sk;
+        public bool notiek_spele = false;
         public Color rezga_krasa;
         public ImageAttributes efekti;
-        public gabalins[,] laukums;
-        public System.Reflection.Assembly projekts = System.Reflection.Assembly.GetExecutingAssembly(); 
+        public int platums, augstums, rindu_sk, kolonnu_sk, kopa_sk;
 
+        public gabalins[,] laukums;
         public class gabalins
         {
             public int indekss, m, n;
@@ -28,6 +29,7 @@ namespace puzlicis
         public void laukuma_dati()
         {
             attels = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_01.jpg")), panelis_spele.Width, panelis_spele.Height);
+            prieksskatijums.BackgroundImage = new Bitmap(attels, prieksskatijums.Width, prieksskatijums.Height);
             rindu_sk = 4;
             kolonnu_sk = 4;
             kopa_sk = rindu_sk * kolonnu_sk;
@@ -93,7 +95,11 @@ namespace puzlicis
 
                     g.DrawImage(attels, kur_zimet, laukums[i, j].m * platums, laukums[i, j].n * augstums, platums, augstums, GraphicsUnit.Pixel, efekti);
                     //g.DrawString(laukums[i, j].indekss.ToString(), new Font(FontFamily.GenericSansSerif, 26), Brushes.White, i * platums, j * augstums);
-                    g.DrawRectangle(new Pen(rezga_krasa, 2.0f), i * platums, j * augstums, platums, augstums);
+                    
+                    if (radit_rezgi.Checked)
+                    {
+                        g.DrawRectangle(new Pen(rezga_krasa, 2.0f), i * platums, j * augstums, platums, augstums);
+                    }
                 }
             }
         }
@@ -103,11 +109,36 @@ namespace puzlicis
             InitializeComponent();
         }
 
-        private void panelis_spele_MouseClick(object sender, MouseEventArgs e)
+        private void galvena_forma_SizeChanged(object sender, EventArgs e)
         {
+            // Jāizlabo kļūda, kas rodas programmu minimizējot
+            if (notiek_spele)
+            {
+                laukuma_dati();
+                zimet_laukumu();
+            }
+        }
+
+        private void radit_rezgi_CheckedChanged(object sender, EventArgs e)
+        {
+            zimet_laukumu();
+        }
+
+        private void jaunaSpēleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Jāizlabo kļūda, kas rodas sākot jaunu spēli ar Ctrl+N taustiņu (saistīta ar radit_rezgi.Visible) jeb formas pārzīmēšanos
+            radit_rezgi.Visible = true;
+            notiek_spele = true;
+
             laukuma_dati();
             generet_laukumu();
             zimet_laukumu();
+        }
+
+        private void izietToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Papildus kods, kas saglabā pašreizējo spēles stāvokli
+            Application.Exit();
         }
     }
 }
