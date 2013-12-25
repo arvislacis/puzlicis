@@ -76,11 +76,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="atteli\attels_01.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="atteli\attels_02.jpg" />
-    <EmbeddedResource Include="atteli\attels_03.jpg" />
+  	<EmbeddedResource Include="atteli\attels_01.jpg" />
+  	<EmbeddedResource Include="atteli\attels_02.jpg" />
+  	<EmbeddedResource Include="atteli\attels_03.jpg" />
     <EmbeddedResource Include="atteli\attels_04.jpg" />
     <EmbeddedResource Include="atteli\attels_05.jpg" />
     <EmbeddedResource Include="atteli\attels_06.jpg" />
@@ -88,13 +86,21 @@
     <EmbeddedResource Include="atteli\attels_08.jpg" />
     <EmbeddedResource Include="atteli\attels_09.jpg" />
     <EmbeddedResource Include="atteli\attels_10.jpg" />
+    <EmbeddedResource Include="atteli\attels_11.jpg" />
+    <EmbeddedResource Include="atteli\attels_12.jpg" />
+    <EmbeddedResource Include="atteli\attels_13.jpg" />
+    <EmbeddedResource Include="atteli\attels_14.jpg" />
+    <EmbeddedResource Include="atteli\attels_15.jpg" />
+    <EmbeddedResource Include="atteli\attels_16.jpg" />
+    <EmbeddedResource Include="atteli\attels_17.jpg" />
+    <EmbeddedResource Include="atteli\attels_18.jpg" />
+    <EmbeddedResource Include="atteli\attels_19.jpg" />
+    <EmbeddedResource Include="atteli\attels_20.jpg" />
+    <EmbeddedResource Include="atteli\attels_21.jpg" />
+    <EmbeddedResource Include="atteli\attels_22.jpg" />
+    <EmbeddedResource Include="atteli\attels_23.jpg" />
+    <EmbeddedResource Include="atteli\attels_24.jpg" />
+    <EmbeddedResource Include="atteli\attels_25.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

@@ -25,7 +25,7 @@ namespace puzlicis
             public int indekss, m, n;
         }
 
-        public void speles_dati()
+        public void laukuma_dati()
         {
             attels = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_01.jpg")), panelis_spele.Width, panelis_spele.Height);
             rindu_sk = 4;
@@ -105,7 +105,7 @@ namespace puzlicis
 
         private void panelis_spele_MouseClick(object sender, MouseEventArgs e)
         {
-            speles_dati();
+            laukuma_dati();
             generet_laukumu();
             zimet_laukumu();
         }
