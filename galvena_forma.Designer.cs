@@ -40,6 +40,7 @@
             this.panelis_spele = new System.Windows.Forms.Panel();
             this.prieksskatijums = new System.Windows.Forms.Panel();
             this.radit_rezgi = new System.Windows.Forms.CheckBox();
+            this.attēlaPriekšskatījumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +91,8 @@
             // 
             // rīkiToolStripMenuItem
             // 
+            this.rīkiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.attēlaPriekšskatījumsToolStripMenuItem});
             this.rīkiToolStripMenuItem.Name = "rīkiToolStripMenuItem";
             this.rīkiToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.rīkiToolStripMenuItem.Text = "&Rīki";
@@ -121,6 +124,7 @@
             this.prieksskatijums.Name = "prieksskatijums";
             this.prieksskatijums.Size = new System.Drawing.Size(200, 150);
             this.prieksskatijums.TabIndex = 6;
+            this.prieksskatijums.Click += new System.EventHandler(this.prieksskatijums_Click);
             // 
             // radit_rezgi
             // 
@@ -137,6 +141,14 @@
             this.radit_rezgi.Visible = false;
             this.radit_rezgi.CheckedChanged += new System.EventHandler(this.radit_rezgi_CheckedChanged);
             // 
+            // attēlaPriekšskatījumsToolStripMenuItem
+            // 
+            this.attēlaPriekšskatījumsToolStripMenuItem.Name = "attēlaPriekšskatījumsToolStripMenuItem";
+            this.attēlaPriekšskatījumsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.attēlaPriekšskatījumsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.attēlaPriekšskatījumsToolStripMenuItem.Text = "A&ttēla priekšskatījums";
+            this.attēlaPriekšskatījumsToolStripMenuItem.Click += new System.EventHandler(this.attēlaPriekšskatījumsToolStripMenuItem_Click);
+            // 
             // galvena_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,6 +160,7 @@
             this.Controls.Add(this.statusa_josla);
             this.Controls.Add(this.izvelne);
             this.MainMenuStrip = this.izvelne;
+            this.MinimumSize = new System.Drawing.Size(350, 300);
             this.Name = "galvena_forma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Puzlicis";
@@ -172,6 +185,6 @@
         private System.Windows.Forms.ToolStripMenuItem palīdzībaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jaunaSpēleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem izietToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem attēlaPriekšskatījumsToolStripMenuItem;
     }
 }
-

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("puzlicis")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Puzlicis")]
+[assembly: AssemblyDescription("Vienkārša attēlu puzļu likšanas programma.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("puzlicis")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCompany("Arvis Lācis")]
+[assembly: AssemblyProduct("Puzlicis")]
+[assembly: AssemblyCopyright("Copyright © 2013-2014 Arvis Lācis")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
