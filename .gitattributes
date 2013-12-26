@@ -4,5 +4,6 @@
 *.csproj text
 *.resx text
 *.settings text
+*.user text
 
 *.jpg binary

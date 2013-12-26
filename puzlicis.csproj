@@ -69,6 +69,12 @@
     <Compile Include="galvena_forma.Designer.cs">
       <DependentUpon>galvena_forma.cs</DependentUpon>
     </Compile>
+    <Compile Include="jaunas_speles_forma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jaunas_speles_forma.Designer.cs">
+      <DependentUpon>jaunas_speles_forma.cs</DependentUpon>
+    </Compile>
     <Compile Include="prieksskatijuma_forma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="galvena_forma.resx">
       <DependentUpon>galvena_forma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jaunas_speles_forma.resx">
+      <DependentUpon>jaunas_speles_forma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="prieksskatijuma_forma.resx">
       <DependentUpon>prieksskatijuma_forma.cs</DependentUpon>
@@ -105,15 +114,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="atteli\attels_01.jpg" />
-    <EmbeddedResource Include="atteli\attels_02.jpg" />
-    <EmbeddedResource Include="atteli\attels_03.jpg" />
-    <EmbeddedResource Include="atteli\attels_04.jpg" />
-    <EmbeddedResource Include="atteli\attels_05.jpg" />
-    <EmbeddedResource Include="atteli\attels_06.jpg" />
-    <EmbeddedResource Include="atteli\attels_07.jpg" />
-    <EmbeddedResource Include="atteli\attels_08.jpg" />
-    <EmbeddedResource Include="atteli\attels_09.jpg" />
+    <EmbeddedResource Include="atteli\attels_1.jpg" />
+    <EmbeddedResource Include="atteli\attels_2.jpg" />
+    <EmbeddedResource Include="atteli\attels_3.jpg" />
+    <EmbeddedResource Include="atteli\attels_4.jpg" />
+    <EmbeddedResource Include="atteli\attels_5.jpg" />
+    <EmbeddedResource Include="atteli\attels_6.jpg" />
+    <EmbeddedResource Include="atteli\attels_7.jpg" />
+    <EmbeddedResource Include="atteli\attels_8.jpg" />
+    <EmbeddedResource Include="atteli\attels_9.jpg" />
     <EmbeddedResource Include="atteli\attels_10.jpg" />
     <EmbeddedResource Include="atteli\attels_11.jpg" />
     <EmbeddedResource Include="atteli\attels_12.jpg" />

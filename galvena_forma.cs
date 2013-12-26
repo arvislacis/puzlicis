@@ -18,8 +18,9 @@ namespace puzlicis
         public bool notiek_spele = false;
         public Color rezga_krasa;
         public ImageAttributes efekti;
-        public int attelu_sk = 25, platums, augstums, rindu_sk = 5, kolonnu_sk = 5;
-        public string attela_id;
+        public int attelu_sk = 25, attela_id, platums, augstums;
+        public static bool jauna_spele = false;
+        public static int rindu_sk, kolonnu_sk;
 
         public gabalins[,] laukums;
         public class gabalins
@@ -29,7 +30,7 @@ namespace puzlicis
 
         public void laukuma_dati()
         {
-            attels = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id + ".jpg")), panelis_spele.Width, panelis_spele.Height);
+            attels = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id.ToString() + ".jpg")), panelis_spele.Width, panelis_spele.Height);
             prieksskatijums.BackgroundImage = new Bitmap(attels, prieksskatijums.Width, prieksskatijums.Height);
             platums = panelis_spele.Width / rindu_sk;
             augstums = panelis_spele.Height / kolonnu_sk;
@@ -58,6 +59,7 @@ namespace puzlicis
                 {
                     laukums[i, j] = new gabalins()
                     {
+                        // TODO Atrasta veidu kā samainīt indeksa pozīciju (rindas x kolonnas)
                         indekss = skaititajs,
                         m = i,
                         n = j
@@ -71,12 +73,7 @@ namespace puzlicis
             gabalins tmp = new gabalins();
             int[] r1, r2;
             
-            attela_id = r.Next(1, attelu_sk).ToString();
-
-            if (int.Parse(attela_id) < 10)
-            {
-                attela_id = "0" + attela_id;
-            }
+            attela_id = r.Next(1, attelu_sk);
 
             for (int i = 0; i < rindu_sk * kolonnu_sk * 2; i++)
             {
@@ -101,7 +98,7 @@ namespace puzlicis
 
                     g.DrawImage(attels, kur_zimet, laukums[i, j].m * platums, laukums[i, j].n * augstums, platums, augstums, GraphicsUnit.Pixel, efekti);
                     // TODO Atbalstīt ciparu rādīšanu uz puzles gabaliņiem (lai atvieglotu tās salikšanu)
-                    //g.DrawString(laukums[i, j].indekss.ToString(), new Font(FontFamily.GenericSansSerif, 26), Brushes.White, i * platums, j * augstums);
+                    // g.DrawString(laukums[i, j].indekss.ToString(), new Font(FontFamily.GenericSansSerif, 26), Brushes.White, i * platums, j * augstums);
                     
                     if (radit_rezgi.Checked)
                     {
@@ -131,8 +128,8 @@ namespace puzlicis
             if (notiek_spele)
             {
                 prieksskatijuma_forma forma = new prieksskatijuma_forma();
-                forma.BackgroundImage = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id + ".jpg")), forma.Width, forma.Height);
-                forma.Show();
+                forma.BackgroundImage = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id.ToString() + ".jpg")), forma.Width, forma.Height);
+                forma.ShowDialog();
             }
         }
 
@@ -143,13 +140,17 @@ namespace puzlicis
 
         private void jaunaSpēleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO Jāizlabo kļūda, kas rodas sākot jaunu spēli ar Ctrl+N taustiņu (saistīta ar radit_rezgi.Visible) jeb formas pārzīmēšanos
-            radit_rezgi.Visible = true;
-            notiek_spele = true;
+            jaunas_speles_forma forma = new jaunas_speles_forma();
+            forma.ShowDialog();
+            
+            if (jauna_spele)
+            {
+                notiek_spele = attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = true;
 
-            generet_laukumu();
-            laukuma_dati();
-            zimet_laukumu();
+                generet_laukumu();
+                laukuma_dati();
+                zimet_laukumu();
+            }
         }
 
         private void izietToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,12 +159,20 @@ namespace puzlicis
             Application.Exit();
         }
 
-        // TODO Kad nenotiek jauna spēle, šo izvēlnes sadaļu padarīt neaktīvu
         // TODO Rīku sadaļā pievienot vienumus puzles laukuma normalizēšanai - sākuma stāvoklī un 4:3 proporcijā
         private void attēlaPriekšskatījumsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO Papildus kods, kas neļauj vienlaicīgi atvērt divus priekšskatījuma logus (nodrošina pārslēgšanos uz to vai aizvēršanu)
             prieksskatijums_Click(sender, e);
+        }
+
+        private void galvena_forma_Resize(object sender, EventArgs e)
+        {
+            // TODO Jāizlabo kļūda, kas rodas programmu minimizējot
+            if (notiek_spele)
+            {
+                laukuma_dati();
+                zimet_laukumu();
+            }
         }
     }
 }

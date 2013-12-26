@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(584, 416);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "prieksskatijuma_forma";
+            this.ShowInTaskbar = false;
             this.Text = "Attēla priekšskatījums";
             this.Click += new System.EventHandler(this.prieksskatijuma_forma_Click);
             this.ResumeLayout(false);
