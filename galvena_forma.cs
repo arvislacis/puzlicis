@@ -17,6 +17,7 @@ namespace puzlicis
         public Bitmap attels;
         public bool notiek_spele = false;
         public Color rezga_krasa;
+        public Image attela_resurss;
         public ImageAttributes efekti;
         public int attelu_sk = 25, attela_id, platums, augstums;
         public static bool jauna_spele = false;
@@ -30,8 +31,7 @@ namespace puzlicis
 
         public void laukuma_dati()
         {
-            attels = new Bitmap(Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id.ToString() + ".jpg")), panelis_spele.Width, panelis_spele.Height);
-            prieksskatijums.BackgroundImage = new Bitmap(attels, prieksskatijums.Width, prieksskatijums.Height);
+            attels = new Bitmap(attela_resurss, panelis_spele.Width, panelis_spele.Height);
             platums = panelis_spele.Width / rindu_sk;
             augstums = panelis_spele.Height / kolonnu_sk;
             rezga_krasa = Color.Red;
@@ -50,7 +50,6 @@ namespace puzlicis
 
         public void generet_laukumu()
         {
-            int skaititajs = 1;
             laukums = new gabalins[rindu_sk, kolonnu_sk];
 
             for (int i = 0; i < rindu_sk; i++)
@@ -59,12 +58,19 @@ namespace puzlicis
                 {
                     laukums[i, j] = new gabalins()
                     {
-                        // TODO Atrasta veidu kā samainīt indeksa pozīciju (rindas x kolonnas)
-                        indekss = skaititajs,
                         m = i,
                         n = j
                     };
+                }
+            }
 
+            int skaititajs = 1;
+
+            for (int i = 0; i < kolonnu_sk; i++)
+            {
+                for (int j = 0; j < rindu_sk; j++)
+                {
+                    laukums[j, i].indekss = skaititajs;
                     skaititajs++;
                 }
             }
@@ -74,6 +80,7 @@ namespace puzlicis
             int[] r1, r2;
             
             attela_id = r.Next(1, attelu_sk);
+            attela_resurss = Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id.ToString() + ".jpg"));
 
             for (int i = 0; i < rindu_sk * kolonnu_sk * 2; i++)
             {
@@ -113,13 +120,46 @@ namespace puzlicis
             InitializeComponent();
         }
 
-        private void galvena_forma_SizeChanged(object sender, EventArgs e)
+        // TODO Samazināt formas pārzīmēšanu skaitu (taimeris un skaitītājs)
+        private void galvena_forma_Paint(object sender, PaintEventArgs e)
         {
-            // TODO Jāizlabo kļūda, kas rodas programmu minimizējot
             if (notiek_spele)
             {
                 laukuma_dati();
                 zimet_laukumu();
+            }
+        }
+
+        private void panelis_spele_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void panelis_spele_MouseClick(object sender, MouseEventArgs e)
+        {
+            int m = 0, n = 0;
+
+            if (jauna_spele)
+            {
+                for (int i = 0; i < rindu_sk; i++)
+                {
+                    if (((i - 1) * platums < e.X) && (e.X < (i + 1) * platums))
+                    {
+                        m = i;
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < kolonnu_sk; i++)
+                {
+                    if (((i - 1) * augstums < e.Y) && (e.Y < (i + 1) * augstums))
+                    {
+                        n = i;
+                        break;
+                    }
+                }
+
+                MessageBox.Show(laukums[m, n].indekss.ToString());
             }
         }
 
@@ -138,18 +178,18 @@ namespace puzlicis
             zimet_laukumu();
         }
 
+
         private void jaunaSpēleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             jaunas_speles_forma forma = new jaunas_speles_forma();
             forma.ShowDialog();
             
+            // TODO Novērst problēmu, kas uzsāk jaunu spēli arī tad, ja tiek aizvērts Jaunas spēles dialogs
             if (jauna_spele)
             {
                 notiek_spele = attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = true;
-
                 generet_laukumu();
-                laukuma_dati();
-                zimet_laukumu();
+                prieksskatijums.BackgroundImage = new Bitmap(attela_resurss, prieksskatijums.Width, prieksskatijums.Height);
             }
         }
 
@@ -163,16 +203,6 @@ namespace puzlicis
         private void attēlaPriekšskatījumsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             prieksskatijums_Click(sender, e);
-        }
-
-        private void galvena_forma_Resize(object sender, EventArgs e)
-        {
-            // TODO Jāizlabo kļūda, kas rodas programmu minimizējot
-            if (notiek_spele)
-            {
-                laukuma_dati();
-                zimet_laukumu();
-            }
         }
     }
 }

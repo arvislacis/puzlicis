@@ -125,6 +125,8 @@
             this.panelis_spele.Name = "panelis_spele";
             this.panelis_spele.Size = new System.Drawing.Size(480, 360);
             this.panelis_spele.TabIndex = 5;
+            this.panelis_spele.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelis_spele_MouseClick);
+            this.panelis_spele.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelis_spele_MouseMove);
             // 
             // prieksskatijums
             // 
@@ -165,7 +167,7 @@
             this.Name = "galvena_forma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Puzlicis";
-            this.SizeChanged += new System.EventHandler(this.galvena_forma_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.galvena_forma_Paint);
             this.izvelne.ResumeLayout(false);
             this.izvelne.PerformLayout();
             this.ResumeLayout(false);
