@@ -41,6 +41,7 @@
             this.panelis_spele = new System.Windows.Forms.Panel();
             this.prieksskatijums = new System.Windows.Forms.Panel();
             this.radit_rezgi = new System.Windows.Forms.CheckBox();
+            this.radit_indeksus = new System.Windows.Forms.CheckBox();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,18 +146,32 @@
             this.radit_rezgi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.radit_rezgi.Location = new System.Drawing.Point(522, 183);
             this.radit_rezgi.Name = "radit_rezgi";
-            this.radit_rezgi.Size = new System.Drawing.Size(110, 17);
+            this.radit_rezgi.Size = new System.Drawing.Size(186, 17);
             this.radit_rezgi.TabIndex = 7;
-            this.radit_rezgi.Text = "Rādīt režģa līnijas";
+            this.radit_rezgi.Text = "Rādīt spēles laukuma režģa līnijas";
             this.radit_rezgi.UseVisualStyleBackColor = true;
             this.radit_rezgi.Visible = false;
             this.radit_rezgi.CheckedChanged += new System.EventHandler(this.radit_rezgi_CheckedChanged);
+            // 
+            // radit_indeksus
+            // 
+            this.radit_indeksus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radit_indeksus.AutoSize = true;
+            this.radit_indeksus.Location = new System.Drawing.Point(522, 206);
+            this.radit_indeksus.Name = "radit_indeksus";
+            this.radit_indeksus.Size = new System.Drawing.Size(173, 17);
+            this.radit_indeksus.TabIndex = 8;
+            this.radit_indeksus.Text = "Rādīt puzles gabaliņu indeksus";
+            this.radit_indeksus.UseVisualStyleBackColor = true;
+            this.radit_indeksus.Visible = false;
+            this.radit_indeksus.CheckedChanged += new System.EventHandler(this.radit_indeksus_CheckedChanged);
             // 
             // galvena_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 412);
+            this.Controls.Add(this.radit_indeksus);
             this.Controls.Add(this.radit_rezgi);
             this.Controls.Add(this.prieksskatijums);
             this.Controls.Add(this.panelis_spele);
@@ -189,5 +204,6 @@
         private System.Windows.Forms.ToolStripMenuItem jaunaSpēleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem izietToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attēlaPriekšskatījumsToolStripMenuItem;
+        private System.Windows.Forms.CheckBox radit_indeksus;
     }
 }

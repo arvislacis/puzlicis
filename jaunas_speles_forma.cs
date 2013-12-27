@@ -15,11 +15,8 @@ namespace puzlicis
         {
             InitializeComponent();
 
-            if (galvena_forma.jauna_spele)
-            {
-                rindas.Value = (decimal)galvena_forma.rindu_sk;
-                kolonnas.Value = (decimal)galvena_forma.kolonnu_sk;
-            }
+            rindas.Value = (decimal)galvena_forma.rindu_sk;
+            kolonnas.Value = (decimal)galvena_forma.kolonnu_sk;
         }
 
         private void sakt_speli_Click(object sender, EventArgs e)
