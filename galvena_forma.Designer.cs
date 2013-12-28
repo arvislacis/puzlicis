@@ -42,11 +42,19 @@
             this.prieksskatijums = new System.Windows.Forms.Panel();
             this.radit_rezgi = new System.Windows.Forms.CheckBox();
             this.radit_indeksus = new System.Windows.Forms.CheckBox();
+            this.ieprieksejais = new System.Windows.Forms.Button();
+            this.nakamais = new System.Windows.Forms.Button();
+            this.statuss_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.gajieni_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusa_josla.SuspendLayout();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusa_josla
             // 
+            this.statusa_josla.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statuss_txt,
+            this.gajieni_txt});
             this.statusa_josla.Location = new System.Drawing.Point(0, 390);
             this.statusa_josla.Name = "statusa_josla";
             this.statusa_josla.Size = new System.Drawing.Size(734, 22);
@@ -166,11 +174,50 @@
             this.radit_indeksus.Visible = false;
             this.radit_indeksus.CheckedChanged += new System.EventHandler(this.radit_indeksus_CheckedChanged);
             // 
+            // ieprieksejais
+            // 
+            this.ieprieksejais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ieprieksejais.Location = new System.Drawing.Point(522, 362);
+            this.ieprieksejais.Name = "ieprieksejais";
+            this.ieprieksejais.Size = new System.Drawing.Size(90, 25);
+            this.ieprieksejais.TabIndex = 9;
+            this.ieprieksejais.Text = "<<";
+            this.ieprieksejais.UseVisualStyleBackColor = true;
+            this.ieprieksejais.Visible = false;
+            this.ieprieksejais.Click += new System.EventHandler(this.ieprieksejais_Click);
+            // 
+            // nakamais
+            // 
+            this.nakamais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nakamais.Location = new System.Drawing.Point(632, 362);
+            this.nakamais.Name = "nakamais";
+            this.nakamais.Size = new System.Drawing.Size(90, 25);
+            this.nakamais.TabIndex = 10;
+            this.nakamais.Text = ">>";
+            this.nakamais.UseVisualStyleBackColor = true;
+            this.nakamais.Visible = false;
+            this.nakamais.Click += new System.EventHandler(this.nakamais_Click);
+            // 
+            // statuss_txt
+            // 
+            this.statuss_txt.Name = "statuss_txt";
+            this.statuss_txt.Size = new System.Drawing.Size(235, 17);
+            this.statuss_txt.Text = "Lai sāktu jaunu spēli: Spēle -> Jauna spēle...";
+            // 
+            // gajieni_txt
+            // 
+            this.gajieni_txt.Name = "gajieni_txt";
+            this.gajieni_txt.Size = new System.Drawing.Size(55, 17);
+            this.gajieni_txt.Text = "Gājieni: 0";
+            this.gajieni_txt.Visible = false;
+            // 
             // galvena_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 412);
+            this.Controls.Add(this.nakamais);
+            this.Controls.Add(this.ieprieksejais);
             this.Controls.Add(this.radit_indeksus);
             this.Controls.Add(this.radit_rezgi);
             this.Controls.Add(this.prieksskatijums);
@@ -178,11 +225,13 @@
             this.Controls.Add(this.statusa_josla);
             this.Controls.Add(this.izvelne);
             this.MainMenuStrip = this.izvelne;
-            this.MinimumSize = new System.Drawing.Size(500, 300);
+            this.MinimumSize = new System.Drawing.Size(600, 360);
             this.Name = "galvena_forma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Puzlicis";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.galvena_forma_Paint);
+            this.SizeChanged += new System.EventHandler(this.galvena_forma_SizeChanged);
+            this.statusa_josla.ResumeLayout(false);
+            this.statusa_josla.PerformLayout();
             this.izvelne.ResumeLayout(false);
             this.izvelne.PerformLayout();
             this.ResumeLayout(false);
@@ -205,5 +254,9 @@
         private System.Windows.Forms.ToolStripMenuItem izietToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attēlaPriekšskatījumsToolStripMenuItem;
         private System.Windows.Forms.CheckBox radit_indeksus;
+        private System.Windows.Forms.Button ieprieksejais;
+        private System.Windows.Forms.Button nakamais;
+        private System.Windows.Forms.ToolStripStatusLabel statuss_txt;
+        private System.Windows.Forms.ToolStripStatusLabel gajieni_txt;
     }
 }
