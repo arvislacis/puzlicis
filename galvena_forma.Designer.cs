@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.statusa_josla = new System.Windows.Forms.StatusStrip();
+            this.statuss_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.gajieni_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.izvelne = new System.Windows.Forms.MenuStrip();
             this.spēleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jaunaSpēleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,8 +46,7 @@
             this.radit_indeksus = new System.Windows.Forms.CheckBox();
             this.ieprieksejais = new System.Windows.Forms.Button();
             this.nakamais = new System.Windows.Forms.Button();
-            this.statuss_txt = new System.Windows.Forms.ToolStripStatusLabel();
-            this.gajieni_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.laiks_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusa_josla.SuspendLayout();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
@@ -54,12 +55,26 @@
             // 
             this.statusa_josla.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statuss_txt,
-            this.gajieni_txt});
+            this.gajieni_txt,
+            this.laiks_txt});
             this.statusa_josla.Location = new System.Drawing.Point(0, 390);
             this.statusa_josla.Name = "statusa_josla";
             this.statusa_josla.Size = new System.Drawing.Size(734, 22);
             this.statusa_josla.TabIndex = 0;
             this.statusa_josla.Text = "Statusa josla";
+            // 
+            // statuss_txt
+            // 
+            this.statuss_txt.Name = "statuss_txt";
+            this.statuss_txt.Size = new System.Drawing.Size(235, 17);
+            this.statuss_txt.Text = "Lai sāktu jaunu spēli: Spēle -> Jauna spēle...";
+            // 
+            // gajieni_txt
+            // 
+            this.gajieni_txt.Name = "gajieni_txt";
+            this.gajieni_txt.Size = new System.Drawing.Size(55, 17);
+            this.gajieni_txt.Text = "Gājieni: 0";
+            this.gajieni_txt.Visible = false;
             // 
             // izvelne
             // 
@@ -124,6 +139,7 @@
             // taimeris
             // 
             this.taimeris.Interval = 1000;
+            this.taimeris.Tick += new System.EventHandler(this.taimeris_Tick);
             // 
             // panelis_spele
             // 
@@ -198,18 +214,12 @@
             this.nakamais.Visible = false;
             this.nakamais.Click += new System.EventHandler(this.nakamais_Click);
             // 
-            // statuss_txt
+            // laiks_txt
             // 
-            this.statuss_txt.Name = "statuss_txt";
-            this.statuss_txt.Size = new System.Drawing.Size(235, 17);
-            this.statuss_txt.Text = "Lai sāktu jaunu spēli: Spēle -> Jauna spēle...";
-            // 
-            // gajieni_txt
-            // 
-            this.gajieni_txt.Name = "gajieni_txt";
-            this.gajieni_txt.Size = new System.Drawing.Size(55, 17);
-            this.gajieni_txt.Text = "Gājieni: 0";
-            this.gajieni_txt.Visible = false;
+            this.laiks_txt.Name = "laiks_txt";
+            this.laiks_txt.Size = new System.Drawing.Size(60, 17);
+            this.laiks_txt.Text = "Laiks: 0:00";
+            this.laiks_txt.Visible = false;
             // 
             // galvena_forma
             // 
@@ -258,5 +268,6 @@
         private System.Windows.Forms.Button nakamais;
         private System.Windows.Forms.ToolStripStatusLabel statuss_txt;
         private System.Windows.Forms.ToolStripStatusLabel gajieni_txt;
+        private System.Windows.Forms.ToolStripStatusLabel laiks_txt;
     }
 }

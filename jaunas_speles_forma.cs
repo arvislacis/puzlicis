@@ -17,12 +17,31 @@ namespace puzlicis
 
             rindas.Value = (decimal)galvena_forma.rindu_sk;
             kolonnas.Value = (decimal)galvena_forma.kolonnu_sk;
+
+            if (galvena_forma.speles_veids == "parastā")
+            {
+                spele_parasta.Checked = true;
+            }
+            else
+            {
+                spele_pelektonu.Checked = true;
+            }
         }
 
         private void sakt_speli_Click(object sender, EventArgs e)
         {
             galvena_forma.rindu_sk = (int)rindas.Value;
             galvena_forma.kolonnu_sk = (int)kolonnas.Value;
+
+            if (spele_parasta.Checked)
+            {
+                galvena_forma.speles_veids = "parastā";
+            }
+            else
+            {
+                galvena_forma.speles_veids = "pelēktoņu";
+            }
+
             galvena_forma.jauna_spele = true;
 
             this.Close();

@@ -17,11 +17,13 @@ namespace puzlicis
         public Bitmap attels;
         public bool ir_salikta = false;
         public Image attela_resurss;
-        public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni;
+        public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime;
+        public string minutes, sekundes;
         public static bool jauna_spele = false;
-        public static Color rezga_krasa = Color.Red, aktiva_krasa = Color.White, iezimeta_krasa = Color.Green;
+        public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, rezga_krasa = Color.Red;
         public static int rindu_sk = 5, kolonnu_sk = 5;
+        public static string speles_veids = "parastā";
 
         public ColorMatrix aktiva_m = new ColorMatrix(
             new float[][] {
@@ -72,7 +74,16 @@ namespace puzlicis
             {
                 for (int j = 0; j < kolonnu_sk; j++)
                 {
-                    laukums[i, j] = new gabalins() { m = i, n = j, matrica = vienibas_m };
+                    laukums[i, j] = new gabalins() { m = i, n = j };
+
+                    if (speles_veids == "parastā")
+                    {
+                        laukums[i, j].matrica = vienibas_m;
+                    }
+                    else
+                    {
+                        laukums[i, j].matrica = pelektonu_m;
+                    }
                 }
             }
 
@@ -120,8 +131,15 @@ namespace puzlicis
 
         public void noteikt_indeksus(int x, int y)
         {
-            m_v = m;
-            n_v = n;
+            if (m_v != m)
+            {
+                m_v = m;
+            }
+
+            if (n_v != n)
+            {
+                n_v = n;
+            }
 
             for (int i = 0; i < rindu_sk; i++)
             {
@@ -142,6 +160,7 @@ namespace puzlicis
             }
         }
 
+        // TODO Atgriežoties atpakaļ spēles laukumā, kad tāpat aizvērta jaunas spēles forma, jāatgriež funkcionalitāte
         public void sakt_jaunu_speli()
         {
             jauna_spele = false;
@@ -153,9 +172,11 @@ namespace puzlicis
             if (jauna_spele)
             {
                 gajieni = 0;
+                laiks = 0;
                 iezime = null;
                 ir_salikta = false;
-                attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = true;
+                // TODO Atsevišķi izdalīt šo rindiņu, lai tā tiktu izpildīta tikai pirmajā reizē, kad tiek sākta spēle
+                taimeris.Enabled = attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = true;
                 statuss_txt.Text = "Notiek spēle...";
                 generet_laukumu();
             }
@@ -190,14 +211,42 @@ namespace puzlicis
 
             if (izpildas)
             {
+                taimeris.Enabled = false;
                 ir_salikta = true;
                 statuss_txt.Text = "Puzle ir salikta!";
 
-                if (MessageBox.Show("Puzle ir veiksmīgi salikta.\n\nIzmantotie gājieni: " + gajieni.ToString() + ".\nLaiks: \n\nVai vēlaties likt jaunu puzli?", "Puzle salikta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show("Puzle ir veiksmīgi salikta.\n\nIzmantotie gājieni: " + gajieni.ToString() + ".\nPatērētais laiks: " + minutes + ":" + sekundes + ".\n\nVai vēlaties likt jaunu puzli?", "Puzle salikta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     sakt_jaunu_speli();
                 }
             }
+        }
+
+        public void zimet_gabalinu(int i, int j)
+        {
+            Graphics g = panelis_spele.CreateGraphics();
+            Rectangle kur_zimet = new Rectangle(i * platums, j * augstums, platums, augstums);
+            ImageAttributes efekti = new ImageAttributes();
+            efekti.SetColorMatrix(laukums[i, j].matrica);
+
+            g.DrawImage(attels, kur_zimet, laukums[i, j].m * platums, laukums[i, j].n * augstums, platums, augstums, GraphicsUnit.Pixel, efekti);
+
+            if (iezime != null)
+            {
+                g.DrawRectangle(new Pen(iezimeta_krasa, 2.0f), iezime[0] * platums, iezime[1] * augstums, platums, augstums);
+            }
+
+            if (radit_rezgi.Checked)
+            {
+                g.DrawRectangle(new Pen(rezga_krasa, 2.0f), i * platums, j * augstums, platums, augstums);
+            }
+
+            if (radit_indeksus.Checked)
+            {
+                g.DrawString(laukums[i, j].indekss.ToString(), new Font(FontFamily.GenericSansSerif, 26), Brushes.White, i * platums, j * augstums);
+            }
+
+            g.DrawRectangle(new Pen(aktiva_krasa, 2.0f), m * platums, n * augstums, platums, augstums);
         }
 
         public void zimet_laukumu()
@@ -212,26 +261,8 @@ namespace puzlicis
                     ImageAttributes efekti = new ImageAttributes();
                     efekti.SetColorMatrix(laukums[i, j].matrica);
 
-                    // TODO Atdalīt zīmēšanas funkciju (līniju) jaunā zīmēšanas funkcijā, lai tai varētu piekļūt ārēji
-                    g.DrawImage(attels, kur_zimet, laukums[i, j].m * platums, laukums[i, j].n * augstums, platums, augstums, GraphicsUnit.Pixel, efekti);
-                    
-                    if (radit_rezgi.Checked)
-                    {
-                        g.DrawRectangle(new Pen(rezga_krasa, 2.0f), i * platums, j * augstums, platums, augstums);
-                    }
-
-                    if (radit_indeksus.Checked)
-                    {
-                        g.DrawString(laukums[i, j].indekss.ToString(), new Font(FontFamily.GenericSansSerif, 26), Brushes.White, i * platums, j * augstums);
-                    }
+                    zimet_gabalinu(i, j);
                 }
-            }
-
-            g.DrawRectangle(new Pen(aktiva_krasa, 2.0f), m * platums, n * augstums, platums, augstums);
-
-            if (iezime != null)
-            {
-                g.DrawRectangle(new Pen(iezimeta_krasa, 2.0f), iezime[0] * platums, iezime[1] * augstums, platums, augstums);
             }
         }
 
@@ -249,27 +280,47 @@ namespace puzlicis
             }
         }
 
-        // TODO Optimizēt kodu tā, lai tiktu pārzīmēti tikai tās attēla daļas, kas tiek mainītas
+        private void taimeris_Tick(object sender, EventArgs e)
+        {
+            laiks++;
+            minutes = (laiks / 60).ToString();
+
+            if (laiks % 60 < 10)
+            {
+                sekundes = "0" + (laiks % 60).ToString();
+            }
+            else
+            {
+                sekundes = (laiks % 60).ToString();
+            }
+
+            laiks_txt.Text = "Laiks: " + minutes + ":" + sekundes;
+        }
+
         private void panelis_spele_MouseMove(object sender, MouseEventArgs e)
         {
             if (jauna_spele)
             {
                 noteikt_indeksus(e.X, e.Y);
 
-                if (laukums[m, n].matrica == iezimes_m)
-                {
-                    zimet_laukumu();
-                }
-
-                if (laukums[m, n].matrica == vienibas_m)
+                if (laukums[m, n].matrica != aktiva_m)
                 {
                     if (laukums[m_v, n_v].matrica != iezimes_m)
                     {
-                        laukums[m_v, n_v].matrica = vienibas_m;
-                    }
+                        if (laukums[m, n].matrica != iezimes_m)
+                        {
+                            laukums[m, n].matrica = aktiva_m;
+                            zimet_gabalinu(m, n);
+                        }
 
-                    laukums[m, n].matrica = aktiva_m;
-                    zimet_laukumu();
+                        laukums[m_v, n_v].matrica = vienibas_m;
+                        zimet_gabalinu(m_v, n_v);
+                    }
+                    else if (laukums[m, n].matrica != iezimes_m)
+                    {
+                        laukums[m, n].matrica = aktiva_m;
+                        zimet_gabalinu(m, n);
+                    }
                 }
             }
         }
@@ -284,18 +335,22 @@ namespace puzlicis
                 {
                     iezime = new int[2] { m, n };
                     laukums[m, n].matrica = iezimes_m;
+                    zimet_gabalinu(m, n);
                 }
                 else
                 {
                     samainit_gabalinus(iezime[0], iezime[1], m, n);
-                    laukums[iezime[0], iezime[1]].matrica = laukums[m, n].matrica = vienibas_m;
+
+                    laukums[m, n].matrica = aktiva_m;
+                    zimet_gabalinu(m, n);
+                    laukums[iezime[0], iezime[1]].matrica = vienibas_m;
+                    zimet_gabalinu(iezime[0], iezime[1]);
+
                     iezime = null;
                     gajieni++;
                     gajieni_txt.Text = "Gājieni: " + gajieni.ToString();
+                    vai_ir_salikta();
                 }
-
-                zimet_laukumu();
-                vai_ir_salikta();
             }
         }
 
