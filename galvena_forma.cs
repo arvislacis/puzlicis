@@ -20,10 +20,9 @@ namespace puzlicis
         public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime;
         public string minutes, sekundes;
-        public static bool jauna_spele = false;
+        public static bool jauna_spele = false, parasta_spele = true;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, rezga_krasa = Color.Red;
         public static int rindu_sk = 5, kolonnu_sk = 5;
-        public static string speles_veids = "parastā";
 
         public ColorMatrix aktiva_m = new ColorMatrix(
             new float[][] {
@@ -41,6 +40,7 @@ namespace puzlicis
                 new float[] {0, 0, 0, 1, 0},
                 new float[] {0, 0, 0, 0, 1}
             });
+        public ColorMatrix nokluseta_m;
         public ColorMatrix pelektonu_m = new ColorMatrix(
             new float[][] {
                 new float[] {.3f, .3f, .3f, 0, 0},
@@ -74,16 +74,7 @@ namespace puzlicis
             {
                 for (int j = 0; j < kolonnu_sk; j++)
                 {
-                    laukums[i, j] = new gabalins() { m = i, n = j };
-
-                    if (speles_veids == "parastā")
-                    {
-                        laukums[i, j].matrica = vienibas_m;
-                    }
-                    else
-                    {
-                        laukums[i, j].matrica = pelektonu_m;
-                    }
+                    laukums[i, j] = new gabalins() { m = i, n = j, matrica = nokluseta_m };
                 }
             }
 
@@ -175,6 +166,16 @@ namespace puzlicis
                 laiks = 0;
                 iezime = null;
                 ir_salikta = false;
+
+                if (parasta_spele)
+                {
+                    nokluseta_m = vienibas_m;
+                }
+                else
+                {
+                    nokluseta_m = pelektonu_m;
+                }
+
                 // TODO Atsevišķi izdalīt šo rindiņu, lai tā tiktu izpildīta tikai pirmajā reizē, kad tiek sākta spēle
                 taimeris.Enabled = attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = true;
                 statuss_txt.Text = "Notiek spēle...";
@@ -222,6 +223,7 @@ namespace puzlicis
             }
         }
 
+        // TODO Atrisināt problēmu ar aktīvās krāsas pārklāšanos visā režģa laukumā
         public void zimet_gabalinu(int i, int j)
         {
             Graphics g = panelis_spele.CreateGraphics();
@@ -313,7 +315,7 @@ namespace puzlicis
                             zimet_gabalinu(m, n);
                         }
 
-                        laukums[m_v, n_v].matrica = vienibas_m;
+                        laukums[m_v, n_v].matrica = nokluseta_m;
                         zimet_gabalinu(m_v, n_v);
                     }
                     else if (laukums[m, n].matrica != iezimes_m)
@@ -343,7 +345,7 @@ namespace puzlicis
 
                     laukums[m, n].matrica = aktiva_m;
                     zimet_gabalinu(m, n);
-                    laukums[iezime[0], iezime[1]].matrica = vienibas_m;
+                    laukums[iezime[0], iezime[1]].matrica = nokluseta_m;
                     zimet_gabalinu(iezime[0], iezime[1]);
 
                     iezime = null;

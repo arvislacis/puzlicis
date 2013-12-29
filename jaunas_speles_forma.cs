@@ -18,7 +18,7 @@ namespace puzlicis
             rindas.Value = (decimal)galvena_forma.rindu_sk;
             kolonnas.Value = (decimal)galvena_forma.kolonnu_sk;
 
-            if (galvena_forma.speles_veids == "parastā")
+            if (galvena_forma.parasta_spele)
             {
                 spele_parasta.Checked = true;
             }
@@ -35,11 +35,11 @@ namespace puzlicis
 
             if (spele_parasta.Checked)
             {
-                galvena_forma.speles_veids = "parastā";
+                galvena_forma.parasta_spele = true;
             }
             else
             {
-                galvena_forma.speles_veids = "pelēktoņu";
+                galvena_forma.parasta_spele = false;
             }
 
             galvena_forma.jauna_spele = true;
