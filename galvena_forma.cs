@@ -415,7 +415,7 @@ namespace puzlicis
             Application.Exit();
         }
 
-        // TODO Rīku sadaļā pievienot vienumus puzles laukuma normalizēšanai - sākuma stāvoklī un 4:3 proporcijā
+        // TODO Skata sadaļā pievienot vienumus puzles laukuma normalizēšanai - sākuma stāvoklī un 4:3 proporcijā
         private void attēlaPriekšskatījumsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             prieksskatijums_Click(sender, e);
