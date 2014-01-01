@@ -20,11 +20,20 @@ namespace puzlicis
 
             if (galvena_forma.parasta_spele)
             {
-                spele_parasta.Checked = true;
+                veids_parasta.Checked = true;
             }
             else
             {
-                spele_pelektonu.Checked = true;
+                veids_piecpadsmit.Checked = true;
+            }
+
+            if (galvena_forma.originala_spele)
+            {
+                krasas_originalas.Checked = true;
+            }
+            else
+            {
+                krasas_pelektonu.Checked = true;
             }
         }
 
@@ -34,13 +43,22 @@ namespace puzlicis
             galvena_forma.rindu_sk = (int)rindas.Value;
             galvena_forma.kolonnu_sk = (int)kolonnas.Value;
 
-            if (spele_parasta.Checked)
+            if (veids_parasta.Checked)
             {
                 galvena_forma.parasta_spele = true;
             }
             else
             {
                 galvena_forma.parasta_spele = false;
+            }
+
+            if (krasas_originalas.Checked)
+            {
+                galvena_forma.originala_spele = true;
+            }
+            else
+            {
+                galvena_forma.originala_spele = false;
             }
 
             galvena_forma.jauna_spele = true;

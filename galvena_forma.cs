@@ -20,7 +20,7 @@ namespace puzlicis
         public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime;
         public string minutes, sekundes;
-        public static bool jauna_spele = false, notiek_spele = false, parasta_spele = true;
+        public static bool jauna_spele = false, notiek_spele = false, parasta_spele = true, originala_spele = true;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, rezga_krasa = Color.Red;
         public static int rindu_sk = 5, kolonnu_sk = 5;
 
@@ -162,7 +162,7 @@ namespace puzlicis
 
             if (jauna_spele)
             {
-                if (parasta_spele)
+                if (originala_spele)
                 {
                     nokluseta_m = vienibas_m;
                 }
@@ -173,16 +173,15 @@ namespace puzlicis
 
                 if (!notiek_spele)
                 {
-                    taimeris.Enabled = attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = true;
+                     radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
                 }
 
                 generet_laukumu();
 
-                gajieni = 0;
-                laiks = 0;
+                gajieni = laiks = 0;
                 iezime = null;
                 ir_salikta = false;
-                notiek_spele = true;
+                notiek_spele = taimeris.Enabled = true;
                 statuss_txt.Text = "Notiek spēle...";
             }
         }
@@ -274,14 +273,6 @@ namespace puzlicis
             InitializeComponent();
         }
 
-        private void galvena_forma_SizeChanged(object sender, EventArgs e)
-        {
-            if ((notiek_spele) && (WindowState != FormWindowState.Minimized))
-            {
-                laukuma_dati();
-            }
-        }
-
         private void taimeris_Tick(object sender, EventArgs e)
         {
             laiks++;
@@ -297,6 +288,22 @@ namespace puzlicis
             }
 
             laiks_txt.Text = "Laiks: " + minutes + ":" + sekundes;
+        }
+
+        private void galvena_forma_SizeChanged(object sender, EventArgs e)
+        {
+            if ((notiek_spele) && (WindowState != FormWindowState.Minimized))
+            {
+                laukuma_dati();
+            }
+        }
+
+        private void panelis_spele_Paint(object sender, PaintEventArgs e)
+        {
+            if (notiek_spele)
+            {
+                laukuma_dati();
+            }
         }
 
         private void panelis_spele_MouseMove(object sender, MouseEventArgs e)
@@ -426,6 +433,11 @@ namespace puzlicis
         private void attēlaPriekšskatījumsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             prieksskatijums_Click(sender, e);
+        }
+
+        private void pārlādētPuzlesAttēluToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelis_spele.Refresh();
         }
 
         private void parToolStripMenuItem_Click(object sender, EventArgs e)
