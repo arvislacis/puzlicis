@@ -20,7 +20,7 @@ namespace puzlicis
         public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime;
         public string minutes, sekundes;
-        public static bool jauna_spele = false, parasta_spele = true;
+        public static bool jauna_spele = false, notiek_spele = false, parasta_spele = true;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, rezga_krasa = Color.Red;
         public static int rindu_sk = 5, kolonnu_sk = 5;
 
@@ -63,6 +63,7 @@ namespace puzlicis
         public class gabalins
         {
             public int indekss, m, n;
+            public Color krasa;
             public ColorMatrix matrica;
         }
 
@@ -74,7 +75,7 @@ namespace puzlicis
             {
                 for (int j = 0; j < kolonnu_sk; j++)
                 {
-                    laukums[i, j] = new gabalins() { m = i, n = j, matrica = nokluseta_m };
+                    laukums[i, j] = new gabalins() { m = i, n = j, krasa = rezga_krasa, matrica = nokluseta_m };
                 }
             }
 
@@ -151,7 +152,6 @@ namespace puzlicis
             }
         }
 
-        // TODO Atgriežoties atpakaļ spēles laukumā, kad tāpat aizvērta jaunas spēles forma, jāatgriež funkcionalitāte
         public void sakt_jaunu_speli()
         {
             jauna_spele = false;
@@ -162,11 +162,6 @@ namespace puzlicis
 
             if (jauna_spele)
             {
-                gajieni = 0;
-                laiks = 0;
-                iezime = null;
-                ir_salikta = false;
-
                 if (parasta_spele)
                 {
                     nokluseta_m = vienibas_m;
@@ -176,10 +171,19 @@ namespace puzlicis
                     nokluseta_m = pelektonu_m;
                 }
 
-                // TODO Atsevišķi izdalīt šo rindiņu, lai tā tiktu izpildīta tikai pirmajā reizē, kad tiek sākta spēle
-                taimeris.Enabled = attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = true;
-                statuss_txt.Text = "Notiek spēle...";
+                if (!notiek_spele)
+                {
+                    taimeris.Enabled = attēlaPriekšskatījumsToolStripMenuItem.Enabled = radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = true;
+                }
+
                 generet_laukumu();
+
+                gajieni = 0;
+                laiks = 0;
+                iezime = null;
+                ir_salikta = false;
+                notiek_spele = true;
+                statuss_txt.Text = "Notiek spēle...";
             }
         }
 
@@ -223,7 +227,6 @@ namespace puzlicis
             }
         }
 
-        // TODO Atrisināt problēmu ar aktīvās krāsas pārklāšanos visā režģa laukumā
         public void zimet_gabalinu(int i, int j)
         {
             Graphics g = panelis_spele.CreateGraphics();
@@ -233,22 +236,20 @@ namespace puzlicis
 
             g.DrawImage(attels, kur_zimet, laukums[i, j].m * platums, laukums[i, j].n * augstums, platums, augstums, GraphicsUnit.Pixel, efekti);
 
-            if (iezime != null)
-            {
-                g.DrawRectangle(new Pen(iezimeta_krasa, 2.0f), iezime[0] * platums, iezime[1] * augstums, platums, augstums);
-            }
-
             if (radit_rezgi.Checked)
             {
-                g.DrawRectangle(new Pen(rezga_krasa, 2.0f), i * platums, j * augstums, platums, augstums);
+                g.DrawRectangle(new Pen(laukums[i, j].krasa, 2.0f), i * platums, j * augstums, platums, augstums);
+
+                if (iezime != null)
+                {
+                    g.DrawRectangle(new Pen(laukums[iezime[0], iezime[1]].krasa, 2.0f), iezime[0] * platums, iezime[1] * augstums, platums, augstums);
+                }
             }
 
             if (radit_indeksus.Checked)
             {
                 g.DrawString(laukums[i, j].indekss.ToString(), new Font(FontFamily.GenericSansSerif, 26), Brushes.White, i * platums, j * augstums);
             }
-
-            g.DrawRectangle(new Pen(aktiva_krasa, 2.0f), m * platums, n * augstums, platums, augstums);
         }
 
         public void zimet_laukumu()
@@ -273,10 +274,9 @@ namespace puzlicis
             InitializeComponent();
         }
 
-        // TODO Novērst minimizēšanas un pārzīmēšanās kļūdas
         private void galvena_forma_SizeChanged(object sender, EventArgs e)
         {
-            if (jauna_spele)
+            if ((notiek_spele) && (WindowState != FormWindowState.Minimized))
             {
                 laukuma_dati();
             }
@@ -301,7 +301,7 @@ namespace puzlicis
 
         private void panelis_spele_MouseMove(object sender, MouseEventArgs e)
         {
-            if (jauna_spele)
+            if (notiek_spele)
             {
                 noteikt_indeksus(e.X, e.Y);
 
@@ -309,18 +309,21 @@ namespace puzlicis
                 {
                     if (laukums[m_v, n_v].matrica != iezimes_m)
                     {
+                        laukums[m_v, n_v].matrica = nokluseta_m;
+                        laukums[m_v, n_v].krasa = rezga_krasa;
+                        zimet_gabalinu(m_v, n_v);
+
                         if (laukums[m, n].matrica != iezimes_m)
                         {
                             laukums[m, n].matrica = aktiva_m;
+                            laukums[m, n].krasa = aktiva_krasa;
                             zimet_gabalinu(m, n);
                         }
-
-                        laukums[m_v, n_v].matrica = nokluseta_m;
-                        zimet_gabalinu(m_v, n_v);
                     }
                     else if (laukums[m, n].matrica != iezimes_m)
                     {
                         laukums[m, n].matrica = aktiva_m;
+                        laukums[m, n].krasa = aktiva_krasa;
                         zimet_gabalinu(m, n);
                     }
                 }
@@ -329,7 +332,7 @@ namespace puzlicis
 
         private void panelis_spele_MouseClick(object sender, MouseEventArgs e)
         {
-            if ((jauna_spele) && (!ir_salikta))
+            if ((notiek_spele) && (!ir_salikta))
             {
                 noteikt_indeksus(e.X, e.Y);
 
@@ -337,6 +340,7 @@ namespace puzlicis
                 {
                     iezime = new int[2] { m, n };
                     laukums[m, n].matrica = iezimes_m;
+                    laukums[m, n].krasa = iezimeta_krasa;
                     zimet_gabalinu(m, n);
                 }
                 else
@@ -344,8 +348,10 @@ namespace puzlicis
                     samainit_gabalinus(iezime[0], iezime[1], m, n);
 
                     laukums[m, n].matrica = aktiva_m;
+                    laukums[m, n].krasa = aktiva_krasa;
                     zimet_gabalinu(m, n);
                     laukums[iezime[0], iezime[1]].matrica = nokluseta_m;
+                    laukums[iezime[0], iezime[1]].krasa = rezga_krasa;
                     zimet_gabalinu(iezime[0], iezime[1]);
 
                     iezime = null;
@@ -358,7 +364,7 @@ namespace puzlicis
 
         private void prieksskatijums_Click(object sender, EventArgs e)
         {
-            if (jauna_spele)
+            if (notiek_spele)
             {
                 prieksskatijuma_forma forma = new prieksskatijuma_forma();
                 forma.BackgroundImage = new Bitmap(attela_resurss, forma.Width, forma.Height);
@@ -416,9 +422,15 @@ namespace puzlicis
         }
 
         // TODO Skata sadaļā pievienot vienumus puzles laukuma normalizēšanai - sākuma stāvoklī un 4:3 proporcijā
+        // TODO Iespējams nodrošināt to, lai vienu priekšskatījuma logu var lietot kopā ar galveno formu
         private void attēlaPriekšskatījumsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             prieksskatijums_Click(sender, e);
+        }
+
+        private void parToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Puzlicis " + Application.ProductVersion + "\nVienkārša attēlu puzļu likšanas programma.\n\nLLU ITF 2. kurss Programmēšana\n© 2013-2014 Arvis Lācis", "Par Puzlici", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

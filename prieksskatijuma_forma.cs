@@ -16,6 +16,7 @@ namespace puzlicis
             InitializeComponent();
         }
 
+        // TODO Nodrošināt aizvēršanu ar Ctrl+P komandu (tāpat kā tiek atvērts)
         private void prieksskatijuma_forma_Click(object sender, EventArgs e)
         {
             this.Close();

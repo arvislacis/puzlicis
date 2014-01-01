@@ -28,6 +28,7 @@ namespace puzlicis
             }
         }
 
+        // TODO Brīdinājuma parādīšana, ja lietotājs izvēlas laukuma izmēru, kas lielāks par 10x10.
         private void sakt_speli_Click(object sender, EventArgs e)
         {
             galvena_forma.rindu_sk = (int)rindas.Value;
