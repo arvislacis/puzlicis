@@ -93,12 +93,61 @@ namespace puzlicis
             Random r = new Random();
             int[] no, uz;
 
-            for (int i = 0; i < rindu_sk * kolonnu_sk * 2; i++)
+            if (parasta_spele)
             {
-                no = new int[2] { r.Next(0, rindu_sk), r.Next(0, kolonnu_sk) };
-                uz = new int[2] { r.Next(0, rindu_sk), r.Next(0, kolonnu_sk) };
+                for (int i = 0; i < rindu_sk * kolonnu_sk * 2; i++)
+                {
+                    no = new int[2] { r.Next(0, rindu_sk), r.Next(0, kolonnu_sk) };
+                    uz = new int[2] { r.Next(0, rindu_sk), r.Next(0, kolonnu_sk) };
 
-                samainit_gabalinus(no[0], no[1], uz[0], uz[1]);
+                    samainit_gabalinus(no[0], no[1], uz[0], uz[1]);
+                }
+            }
+            else
+            {
+                int skaits = 0, i, j, v_i, v_j, virziens;
+                bool beigt = false;
+
+                i = rindu_sk - 1;
+                j = kolonnu_sk - 1;
+
+                v_i = i;
+                v_j = j;
+
+                // TODO Pārbaudīt puzles salikšanas iespējas pēc pārējas funkcionalitātes izveides
+
+                while (!(skaits > rindu_sk * kolonnu_sk * 40) && (!beigt))
+                {
+                    virziens = r.Next(1, 5);
+
+                    switch (virziens)
+                    {
+                        case 1: i = i - 1; break;
+                        case 2: j = j + 1; break;
+                        case 3: i = i + 1; break;
+                        case 4: j = j - 1; break;
+                        default: break;
+                    }
+
+                    if ((0 <= i) && (i < rindu_sk) && (0 <= j) && (j < kolonnu_sk))
+                    {
+                        samainit_gabalinus(v_i, v_j, i, j);
+
+                        v_i = i;
+                        v_j = j;
+                        skaits++;
+                    }
+                    else
+                    {
+                        i = v_i;
+                        j = v_j;
+                    }
+
+                    if ((skaits > rindu_sk * kolonnu_sk * 20) && (i == rindu_sk - 1) && (j == kolonnu_sk - 1))
+                    {
+                        beigt = true;
+                    }
+                }
             }
 
             attela_id = r.Next(1, attelu_sk);
@@ -233,7 +282,15 @@ namespace puzlicis
             ImageAttributes efekti = new ImageAttributes();
             efekti.SetColorMatrix(laukums[i, j].matrica);
 
-            g.DrawImage(attels, kur_zimet, laukums[i, j].m * platums, laukums[i, j].n * augstums, platums, augstums, GraphicsUnit.Pixel, efekti);
+            // TODO Iespējams var pievienot iestatījumu, kas ļauj nomainīt arī "Piecpadsmitā" lauciņa krāsu
+            if ((parasta_spele == false) && (laukums[i, j].indekss == rindu_sk * kolonnu_sk))
+            {
+                g.FillRectangle(new SolidBrush(SystemColors.Control), kur_zimet);
+            }
+            else
+            {
+                g.DrawImage(attels, kur_zimet, laukums[i, j].m * platums, laukums[i, j].n * augstums, platums, augstums, GraphicsUnit.Pixel, efekti);
+            }
 
             if (radit_rezgi.Checked)
             {
@@ -306,6 +363,7 @@ namespace puzlicis
             }
         }
 
+        // TODO Atļaut spēles veidā "Piecpadsmit" samainīt vietām gabaliņus ar bultiņu palīdzību
         private void panelis_spele_MouseMove(object sender, MouseEventArgs e)
         {
             if (notiek_spele)
