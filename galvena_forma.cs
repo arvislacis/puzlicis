@@ -22,7 +22,7 @@ namespace puzlicis
         public string minutes, sekundes;
         public static bool jauna_spele = false, notiek_spele = false, parasta_spele = true, originala_spele = true;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, rezga_krasa = Color.Red;
-        public static int rindu_sk = 5, kolonnu_sk = 5;
+        public static int rindu_sk = 5, kolonnu_sk = 5, kopa = 25;
 
         public ColorMatrix aktiva_m = new ColorMatrix(
             new float[][] {
@@ -116,7 +116,7 @@ namespace puzlicis
 
                 // TODO Pārbaudīt puzles salikšanas iespējas pēc pārējas funkcionalitātes izveides
 
-                while (!(skaits > rindu_sk * kolonnu_sk * 40) && (!beigt))
+                while (!(skaits > kopa * 40) && (!beigt))
                 {
                     virziens = r.Next(1, 5);
 
@@ -143,7 +143,7 @@ namespace puzlicis
                         j = v_j;
                     }
 
-                    if ((skaits > rindu_sk * kolonnu_sk * 20) && (i == rindu_sk - 1) && (j == kolonnu_sk - 1))
+                    if ((skaits > kopa * 20) && (i == rindu_sk - 1) && (j == kolonnu_sk - 1))
                     {
                         beigt = true;
                     }
@@ -199,6 +199,22 @@ namespace puzlicis
                     break;
                 }
             }
+        }
+
+        public int[] noteikt_vietu(int indekss)
+        {
+            for (int i = 0; i < rindu_sk; i++)
+            {
+                for (int j = 0; j < kolonnu_sk; j++)
+                {
+                    if (laukums[i, j].indekss == indekss)
+                    {
+                        return new int[2] {i, j};
+                    }
+                }
+            }
+
+            return new int[2] {-1, -1};
         }
 
         public void sakt_jaunu_speli()
@@ -283,7 +299,7 @@ namespace puzlicis
             efekti.SetColorMatrix(laukums[i, j].matrica);
 
             // TODO Iespējams var pievienot iestatījumu, kas ļauj nomainīt arī "Piecpadsmitā" lauciņa krāsu
-            if ((parasta_spele == false) && (laukums[i, j].indekss == rindu_sk * kolonnu_sk))
+            if ((parasta_spele == false) && (laukums[i, j].indekss == kopa))
             {
                 g.FillRectangle(new SolidBrush(SystemColors.Control), kur_zimet);
             }
@@ -370,22 +386,37 @@ namespace puzlicis
             {
                 noteikt_indeksus(e.X, e.Y);
 
-                if (laukums[m, n].matrica != aktiva_m)
+                if (parasta_spele)
                 {
-                    if (laukums[m_v, n_v].matrica != iezimes_m)
+                    if (laukums[m, n].matrica != aktiva_m)
                     {
-                        laukums[m_v, n_v].matrica = nokluseta_m;
-                        laukums[m_v, n_v].krasa = rezga_krasa;
-                        zimet_gabalinu(m_v, n_v);
+                        if (laukums[m_v, n_v].matrica != iezimes_m)
+                        {
+                            laukums[m_v, n_v].matrica = nokluseta_m;
+                            laukums[m_v, n_v].krasa = rezga_krasa;
+                            zimet_gabalinu(m_v, n_v);
 
-                        if (laukums[m, n].matrica != iezimes_m)
+                            if (laukums[m, n].matrica != iezimes_m)
+                            {
+                                laukums[m, n].matrica = aktiva_m;
+                                laukums[m, n].krasa = aktiva_krasa;
+                                zimet_gabalinu(m, n);
+                            }
+                        }
+                        else if (laukums[m, n].matrica != iezimes_m)
                         {
                             laukums[m, n].matrica = aktiva_m;
                             laukums[m, n].krasa = aktiva_krasa;
                             zimet_gabalinu(m, n);
                         }
                     }
-                    else if (laukums[m, n].matrica != iezimes_m)
+                }
+                else
+                {
+                    int[] vieta = noteikt_vietu(kopa);
+
+                    // TODO Strādāt pie algoritma - lai tiktu iezīmēti tikai iespējamie puzles gabaliņi
+                    if (((vieta[0] == laukums[m, n].m - 1) && (vieta[1] == laukums[m, n].n)) || (vieta[0] == laukums[m, n].m) && (vieta[1] == laukums[m, n].n + 1) || (vieta[0] == laukums[m, n].m + 1) && (vieta[1] == laukums[m, n].n) || (vieta[0] == laukums[m, n].m) && (vieta[1] == laukums[m, n].n - 1))
                     {
                         laukums[m, n].matrica = aktiva_m;
                         laukums[m, n].krasa = aktiva_krasa;

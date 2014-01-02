@@ -42,6 +42,7 @@ namespace puzlicis
         {
             galvena_forma.rindu_sk = (int)rindas.Value;
             galvena_forma.kolonnu_sk = (int)kolonnas.Value;
+            galvena_forma.kopa = galvena_forma.rindu_sk * galvena_forma.kolonnu_sk;
 
             if (veids_parasta.Checked)
             {

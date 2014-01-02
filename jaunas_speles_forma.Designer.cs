@@ -52,7 +52,7 @@
             this.sakt_speli.Location = new System.Drawing.Point(12, 178);
             this.sakt_speli.Name = "sakt_speli";
             this.sakt_speli.Size = new System.Drawing.Size(205, 23);
-            this.sakt_speli.TabIndex = 0;
+            this.sakt_speli.TabIndex = 5;
             this.sakt_speli.Text = "Sākt spēli";
             this.sakt_speli.UseVisualStyleBackColor = true;
             this.sakt_speli.Click += new System.EventHandler(this.sakt_speli_Click);
@@ -111,7 +111,7 @@
             this.rindas_txt.Location = new System.Drawing.Point(9, 14);
             this.rindas_txt.Name = "rindas_txt";
             this.rindas_txt.Size = new System.Drawing.Size(68, 13);
-            this.rindas_txt.TabIndex = 3;
+            this.rindas_txt.TabIndex = 1;
             this.rindas_txt.Text = "Rindu skaits:";
             // 
             // kolonnas_txt
@@ -120,7 +120,7 @@
             this.kolonnas_txt.Location = new System.Drawing.Point(9, 40);
             this.kolonnas_txt.Name = "kolonnas_txt";
             this.kolonnas_txt.Size = new System.Drawing.Size(79, 13);
-            this.kolonnas_txt.TabIndex = 4;
+            this.kolonnas_txt.TabIndex = 2;
             this.kolonnas_txt.Text = "Kolonnu skaits:";
             // 
             // puzles_krasas_txt
@@ -132,7 +132,7 @@
             this.puzles_krasas_txt.Location = new System.Drawing.Point(12, 122);
             this.puzles_krasas_txt.Name = "puzles_krasas_txt";
             this.puzles_krasas_txt.Size = new System.Drawing.Size(205, 50);
-            this.puzles_krasas_txt.TabIndex = 5;
+            this.puzles_krasas_txt.TabIndex = 4;
             this.puzles_krasas_txt.TabStop = false;
             this.puzles_krasas_txt.Text = "Puzles krāsas:";
             // 
@@ -143,7 +143,7 @@
             this.krasas_pelektonu.Location = new System.Drawing.Point(126, 19);
             this.krasas_pelektonu.Name = "krasas_pelektonu";
             this.krasas_pelektonu.Size = new System.Drawing.Size(73, 17);
-            this.krasas_pelektonu.TabIndex = 1;
+            this.krasas_pelektonu.TabIndex = 4;
             this.krasas_pelektonu.TabStop = true;
             this.krasas_pelektonu.Text = "Pelēktoņu";
             this.krasas_pelektonu.UseVisualStyleBackColor = true;
@@ -155,7 +155,7 @@
             this.krasas_originalas.Location = new System.Drawing.Point(6, 19);
             this.krasas_originalas.Name = "krasas_originalas";
             this.krasas_originalas.Size = new System.Drawing.Size(71, 17);
-            this.krasas_originalas.TabIndex = 0;
+            this.krasas_originalas.TabIndex = 4;
             this.krasas_originalas.TabStop = true;
             this.krasas_originalas.Text = "Oriģinālās";
             this.krasas_originalas.UseVisualStyleBackColor = true;
@@ -169,7 +169,7 @@
             this.puzles_veids_txt.Location = new System.Drawing.Point(12, 64);
             this.puzles_veids_txt.Name = "puzles_veids_txt";
             this.puzles_veids_txt.Size = new System.Drawing.Size(205, 50);
-            this.puzles_veids_txt.TabIndex = 6;
+            this.puzles_veids_txt.TabIndex = 3;
             this.puzles_veids_txt.TabStop = false;
             this.puzles_veids_txt.Text = "Puzles veids:";
             // 
@@ -180,7 +180,7 @@
             this.veids_piecpadsmit.Location = new System.Drawing.Point(117, 19);
             this.veids_piecpadsmit.Name = "veids_piecpadsmit";
             this.veids_piecpadsmit.Size = new System.Drawing.Size(82, 17);
-            this.veids_piecpadsmit.TabIndex = 1;
+            this.veids_piecpadsmit.TabIndex = 3;
             this.veids_piecpadsmit.TabStop = true;
             this.veids_piecpadsmit.Text = "Piecpadsmit";
             this.veids_piecpadsmit.UseVisualStyleBackColor = true;
@@ -192,7 +192,7 @@
             this.veids_parasta.Location = new System.Drawing.Point(6, 19);
             this.veids_parasta.Name = "veids_parasta";
             this.veids_parasta.Size = new System.Drawing.Size(61, 17);
-            this.veids_parasta.TabIndex = 0;
+            this.veids_parasta.TabIndex = 3;
             this.veids_parasta.TabStop = true;
             this.veids_parasta.Text = "Parastā";
             this.veids_parasta.UseVisualStyleBackColor = true;
