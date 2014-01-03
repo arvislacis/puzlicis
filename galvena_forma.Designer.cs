@@ -52,6 +52,8 @@
             this.radit_indeksus = new System.Windows.Forms.CheckBox();
             this.ieprieksejais = new System.Windows.Forms.Button();
             this.nakamais = new System.Windows.Forms.Button();
+            this.indekss_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.attels_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusa_josla.SuspendLayout();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +63,9 @@
             this.statusa_josla.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statuss_txt,
             this.gajieni_txt,
-            this.laiks_txt});
+            this.laiks_txt,
+            this.indekss_txt,
+            this.attels_txt});
             this.statusa_josla.Location = new System.Drawing.Point(0, 390);
             this.statusa_josla.Name = "statusa_josla";
             this.statusa_josla.Size = new System.Drawing.Size(734, 22);
@@ -164,7 +168,7 @@
             // iestatījumiToolStripMenuItem
             // 
             this.iestatījumiToolStripMenuItem.Name = "iestatījumiToolStripMenuItem";
-            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.iestatījumiToolStripMenuItem.Text = "&Iestatījumi...";
             // 
             // palīdzībaToolStripMenuItem
@@ -178,7 +182,7 @@
             // parToolStripMenuItem
             // 
             this.parToolStripMenuItem.Name = "parToolStripMenuItem";
-            this.parToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.parToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.parToolStripMenuItem.Text = "P&ar...";
             this.parToolStripMenuItem.Click += new System.EventHandler(this.parToolStripMenuItem_Click);
             // 
@@ -243,8 +247,8 @@
             this.ieprieksejais.Location = new System.Drawing.Point(522, 362);
             this.ieprieksejais.Name = "ieprieksejais";
             this.ieprieksejais.Size = new System.Drawing.Size(90, 25);
-            this.ieprieksejais.TabIndex = 9;
-            this.ieprieksejais.Text = "<<";
+            this.ieprieksejais.TabIndex = 0;
+            this.ieprieksejais.Text = "<< &Iepriekšējais";
             this.ieprieksejais.UseVisualStyleBackColor = true;
             this.ieprieksejais.Visible = false;
             this.ieprieksejais.Click += new System.EventHandler(this.ieprieksejais_Click);
@@ -255,11 +259,25 @@
             this.nakamais.Location = new System.Drawing.Point(632, 362);
             this.nakamais.Name = "nakamais";
             this.nakamais.Size = new System.Drawing.Size(90, 25);
-            this.nakamais.TabIndex = 10;
-            this.nakamais.Text = ">>";
+            this.nakamais.TabIndex = 0;
+            this.nakamais.Text = "&Nākamais >>";
             this.nakamais.UseVisualStyleBackColor = true;
             this.nakamais.Visible = false;
             this.nakamais.Click += new System.EventHandler(this.nakamais_Click);
+            // 
+            // indekss_txt
+            // 
+            this.indekss_txt.Name = "indekss_txt";
+            this.indekss_txt.Size = new System.Drawing.Size(99, 17);
+            this.indekss_txt.Text = "Gabaliņa indekss: 0";
+            this.indekss_txt.Visible = false;
+            // 
+            // attels_txt
+            // 
+            this.attels_txt.Name = "attels_txt";
+            this.attels_txt.Size = new System.Drawing.Size(35, 17);
+            this.attels_txt.Text = "Attēls";
+            this.attels_txt.Visible = false;
             // 
             // galvena_forma
             // 
@@ -275,12 +293,14 @@
             this.Controls.Add(this.statusa_josla);
             this.Controls.Add(this.izvelne);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.izvelne;
             this.MinimumSize = new System.Drawing.Size(600, 360);
             this.Name = "galvena_forma";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Puzlicis";
             this.SizeChanged += new System.EventHandler(this.galvena_forma_SizeChanged);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.galvena_forma_KeyDown);
             this.statusa_josla.ResumeLayout(false);
             this.statusa_josla.PerformLayout();
             this.izvelne.ResumeLayout(false);
@@ -314,5 +334,7 @@
         private System.Windows.Forms.ToolStripMenuItem iestatījumiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pārlādētPuzlesAttēluToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel indekss_txt;
+        private System.Windows.Forms.ToolStripStatusLabel attels_txt;
     }
 }
