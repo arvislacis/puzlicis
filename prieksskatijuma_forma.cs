@@ -16,7 +16,14 @@ namespace puzlicis
             InitializeComponent();
         }
 
-        // TODO Nodrošināt aizvēršanu ar Ctrl+P komandu (tāpat kā tiek atvērts)
+        private void prieksskatijuma_forma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Control == true) && (e.KeyCode == Keys.P))
+            {
+                prieksskatijuma_forma_Click(sender, e);
+            }
+        }
+
         private void prieksskatijuma_forma_Click(object sender, EventArgs e)
         {
             this.Close();

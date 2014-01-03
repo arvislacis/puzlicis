@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(galvena_forma));
             this.statusa_josla = new System.Windows.Forms.StatusStrip();
             this.statuss_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.gajieni_txt = new System.Windows.Forms.ToolStripStatusLabel();
@@ -39,6 +40,7 @@
             this.izietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.attēlaPriekšskatījumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pārlādētPuzlesAttēluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rīkiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iestatījumiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.palīdzībaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +52,6 @@
             this.radit_indeksus = new System.Windows.Forms.CheckBox();
             this.ieprieksejais = new System.Windows.Forms.Button();
             this.nakamais = new System.Windows.Forms.Button();
-            this.pārlādētPuzlesAttēluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusa_josla.SuspendLayout();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
@@ -143,6 +144,15 @@
             this.attēlaPriekšskatījumsToolStripMenuItem.Text = "A&ttēla priekšskatījums";
             this.attēlaPriekšskatījumsToolStripMenuItem.Click += new System.EventHandler(this.attēlaPriekšskatījumsToolStripMenuItem_Click);
             // 
+            // pārlādētPuzlesAttēluToolStripMenuItem
+            // 
+            this.pārlādētPuzlesAttēluToolStripMenuItem.Enabled = false;
+            this.pārlādētPuzlesAttēluToolStripMenuItem.Name = "pārlādētPuzlesAttēluToolStripMenuItem";
+            this.pārlādētPuzlesAttēluToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.pārlādētPuzlesAttēluToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.pārlādētPuzlesAttēluToolStripMenuItem.Text = "Pār&lādēt puzles attēlu";
+            this.pārlādētPuzlesAttēluToolStripMenuItem.Click += new System.EventHandler(this.pārlādētPuzlesAttēluToolStripMenuItem_Click);
+            // 
             // rīkiToolStripMenuItem
             // 
             this.rīkiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -154,7 +164,7 @@
             // iestatījumiToolStripMenuItem
             // 
             this.iestatījumiToolStripMenuItem.Name = "iestatījumiToolStripMenuItem";
-            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.iestatījumiToolStripMenuItem.Text = "&Iestatījumi...";
             // 
             // palīdzībaToolStripMenuItem
@@ -168,7 +178,7 @@
             // parToolStripMenuItem
             // 
             this.parToolStripMenuItem.Name = "parToolStripMenuItem";
-            this.parToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.parToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.parToolStripMenuItem.Text = "P&ar...";
             this.parToolStripMenuItem.Click += new System.EventHandler(this.parToolStripMenuItem_Click);
             // 
@@ -251,15 +261,6 @@
             this.nakamais.Visible = false;
             this.nakamais.Click += new System.EventHandler(this.nakamais_Click);
             // 
-            // pārlādētPuzlesAttēluToolStripMenuItem
-            // 
-            this.pārlādētPuzlesAttēluToolStripMenuItem.Enabled = false;
-            this.pārlādētPuzlesAttēluToolStripMenuItem.Name = "pārlādētPuzlesAttēluToolStripMenuItem";
-            this.pārlādētPuzlesAttēluToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.pārlādētPuzlesAttēluToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.pārlādētPuzlesAttēluToolStripMenuItem.Text = "Pār&lādēt puzles attēlu";
-            this.pārlādētPuzlesAttēluToolStripMenuItem.Click += new System.EventHandler(this.pārlādētPuzlesAttēluToolStripMenuItem_Click);
-            // 
             // galvena_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +274,7 @@
             this.Controls.Add(this.panelis_spele);
             this.Controls.Add(this.statusa_josla);
             this.Controls.Add(this.izvelne);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.izvelne;
             this.MinimumSize = new System.Drawing.Size(600, 360);
             this.Name = "galvena_forma";

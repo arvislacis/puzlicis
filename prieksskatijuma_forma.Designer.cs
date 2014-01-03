@@ -40,6 +40,7 @@
             this.ShowInTaskbar = false;
             this.Text = "Attēla priekšskatījums";
             this.Click += new System.EventHandler(this.prieksskatijuma_forma_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.prieksskatijuma_forma_KeyDown);
             this.ResumeLayout(false);
 
         }

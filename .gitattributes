@@ -6,4 +6,5 @@
 *.settings text
 *.user text
 
+*.ico binary
 *.jpg binary
