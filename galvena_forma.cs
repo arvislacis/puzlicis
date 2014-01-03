@@ -252,7 +252,6 @@ namespace puzlicis
         {
             jauna_spele = false;
 
-            // TODO Brīdinājums situācijā, kad notiek jau jauna spēle
             jaunas_speles_forma forma = new jaunas_speles_forma();
             forma.ShowDialog();
 
@@ -374,7 +373,6 @@ namespace puzlicis
             }
         }
 
-        // TODO Tikt galā ar priekšskatījuma režģa attēlošanu
         public void zimet_prieksskatijuma_rezgi()
         {
             Graphics g = prieksskatijums.CreateGraphics();
@@ -391,7 +389,7 @@ namespace puzlicis
             }
             else
             {
-
+                prieksskatijums.BackgroundImage = new Bitmap(attela_resurss, prieksskatijums.Width, prieksskatijums.Height);
             }
         }
 
@@ -552,12 +550,19 @@ namespace puzlicis
             }
         }
 
+        private void prieksskatijums_Paint(object sender, PaintEventArgs e)
+        {
+            if (radit_prieksskatijuma_rezgi.Checked)
+            {
+                zimet_prieksskatijuma_rezgi();
+            }
+        }
+
         private void radit_rezgi_CheckedChanged(object sender, EventArgs e)
         {
             zimet_laukumu();
         }
 
-        // TODO Tikt galā ar priekšskatījuma režģa attēlošanu
         private void radit_prieksskatijuma_rezgi_CheckedChanged(object sender, EventArgs e)
         {
             prieksskatijuma_rezgis = radit_prieksskatijuma_rezgi.Checked;
@@ -608,7 +613,18 @@ namespace puzlicis
 
         private void jaunaSpēleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sakt_jaunu_speli();
+            if ((notiek_spele) && (!ir_salikta))
+            {
+                if (MessageBox.Show("Vai tiešām vēlaties sākt jaunu spēli?", "Notiek spēle", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    sakt_jaunu_speli();
+                }
+            }
+            else
+            {
+
+                sakt_jaunu_speli();
+            }
         }
 
         private void izietToolStripMenuItem_Click(object sender, EventArgs e)
@@ -618,7 +634,6 @@ namespace puzlicis
         }
 
         // TODO Skata sadaļā pievienot vienumus puzles laukuma normalizēšanai - sākuma stāvoklī un 4:3 proporcijā
-        // TODO Iespējams nodrošināt to, lai vienu priekšskatījuma logu var lietot kopā ar galveno formu
         private void attēlaPriekšskatījumsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             prieksskatijums_Click(sender, e);

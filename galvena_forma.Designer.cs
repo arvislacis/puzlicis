@@ -227,6 +227,7 @@
             this.prieksskatijums.Size = new System.Drawing.Size(200, 150);
             this.prieksskatijums.TabIndex = 6;
             this.prieksskatijums.Click += new System.EventHandler(this.prieksskatijums_Click);
+            this.prieksskatijums.Paint += new System.Windows.Forms.PaintEventHandler(this.prieksskatijums_Paint);
             // 
             // radit_rezgi
             // 
