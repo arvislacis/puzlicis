@@ -18,7 +18,7 @@ namespace puzlicis
         public bool ir_salikta = false;
         public Image attela_resurss;
         public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
-        public int[] iezime;
+        public int[] iezime, pedejais;
         public string minutes, sekundes;
         public static bool jauna_spele = false, notiek_spele = false, parasta_spele = true, originala_spele = true;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, rezga_krasa = Color.Red;
@@ -148,6 +148,8 @@ namespace puzlicis
                         beigt = true;
                     }
                 }
+
+                pedejais = new int[2] { rindu_sk - 1, kolonnu_sk - 1 };
             }
 
             attela_id = r.Next(1, attelu_sk);
@@ -161,6 +163,73 @@ namespace puzlicis
             augstums = panelis_spele.Height / kolonnu_sk;
 
             zimet_laukumu();
+        }
+
+        public void laukumi_aktivie()
+        {
+            if (pedejais[0] > 0)
+            {
+                laukums[pedejais[0] - 1, pedejais[1]].matrica = aktiva_m;
+                laukums[pedejais[0] - 1, pedejais[1]].krasa = aktiva_krasa;
+                zimet_gabalinu(pedejais[0] - 1, pedejais[1]);
+            }
+
+            if (pedejais[0] < rindu_sk - 1)
+            {
+                laukums[pedejais[0] + 1, pedejais[1]].matrica = aktiva_m;
+                laukums[pedejais[0] + 1, pedejais[1]].krasa = aktiva_krasa;
+                zimet_gabalinu(pedejais[0] + 1, pedejais[1]);
+            }
+
+            if (pedejais[1] > 0)
+            {
+                laukums[pedejais[0], pedejais[1] - 1].matrica = aktiva_m;
+                laukums[pedejais[0], pedejais[1] - 1].krasa = aktiva_krasa;
+                zimet_gabalinu(pedejais[0], pedejais[1] - 1);
+            }
+
+            if (pedejais[1] < kolonnu_sk - 1)
+            {
+                laukums[pedejais[0], pedejais[1] + 1].matrica = aktiva_m;
+                laukums[pedejais[0], pedejais[1] + 1].krasa = aktiva_krasa;
+                zimet_gabalinu(pedejais[0], pedejais[1] + 1);
+            }
+
+            laukums[pedejais[0], pedejais[1]].matrica = aktiva_m;
+            laukums[pedejais[0], pedejais[1]].krasa = aktiva_krasa;
+            zimet_gabalinu(pedejais[0], pedejais[1]);
+        }
+
+        // TODO Veikt koda un funkciju optimizāciju, apvienošanu
+        public void laukumi_neaktivie()
+        {
+            if (pedejais[0] > 0)
+            {
+                laukums[pedejais[0] - 1, pedejais[1]].matrica = nokluseta_m;
+                laukums[pedejais[0] - 1, pedejais[1]].krasa = rezga_krasa;
+                zimet_gabalinu(pedejais[0] - 1, pedejais[1]);
+            }
+
+            if (pedejais[0] < rindu_sk - 1)
+            {
+                laukums[pedejais[0] + 1, pedejais[1]].matrica = nokluseta_m;
+                laukums[pedejais[0] + 1, pedejais[1]].krasa = rezga_krasa;
+                zimet_gabalinu(pedejais[0] + 1, pedejais[1]);
+            }
+
+            if (pedejais[1] > 0)
+            {
+                laukums[pedejais[0], pedejais[1] - 1].matrica = nokluseta_m;
+                laukums[pedejais[0], pedejais[1] - 1].krasa = rezga_krasa;
+                zimet_gabalinu(pedejais[0], pedejais[1] - 1);
+            }
+
+            if (pedejais[1] < kolonnu_sk - 1)
+            {
+                laukums[pedejais[0], pedejais[1] + 1].matrica = nokluseta_m;
+                laukums[pedejais[0], pedejais[1] + 1].krasa = rezga_krasa;
+                zimet_gabalinu(pedejais[0], pedejais[1] + 1);
+            }
         }
 
         public void mainit_attelu(int id)
@@ -199,22 +268,6 @@ namespace puzlicis
                     break;
                 }
             }
-        }
-
-        public int[] noteikt_vietu(int indekss)
-        {
-            for (int i = 0; i < rindu_sk; i++)
-            {
-                for (int j = 0; j < kolonnu_sk; j++)
-                {
-                    if (laukums[i, j].indekss == indekss)
-                    {
-                        return new int[2] {i, j};
-                    }
-                }
-            }
-
-            return new int[2] {-1, -1};
         }
 
         public void sakt_jaunu_speli()
@@ -339,6 +392,11 @@ namespace puzlicis
                     zimet_gabalinu(i, j);
                 }
             }
+
+            if (!parasta_spele)
+            {
+                laukumi_aktivie();
+            }
         }
 
         public galvena_forma()
@@ -411,18 +469,6 @@ namespace puzlicis
                         }
                     }
                 }
-                else
-                {
-                    int[] vieta = noteikt_vietu(kopa);
-
-                    // TODO Strādāt pie algoritma - lai tiktu iezīmēti tikai iespējamie puzles gabaliņi
-                    if (((vieta[0] == laukums[m, n].m - 1) && (vieta[1] == laukums[m, n].n)) || (vieta[0] == laukums[m, n].m) && (vieta[1] == laukums[m, n].n + 1) || (vieta[0] == laukums[m, n].m + 1) && (vieta[1] == laukums[m, n].n) || (vieta[0] == laukums[m, n].m) && (vieta[1] == laukums[m, n].n - 1))
-                    {
-                        laukums[m, n].matrica = aktiva_m;
-                        laukums[m, n].krasa = aktiva_krasa;
-                        zimet_gabalinu(m, n);
-                    }
-                }
             }
         }
 
@@ -432,28 +478,41 @@ namespace puzlicis
             {
                 noteikt_indeksus(e.X, e.Y);
 
-                if (iezime == null)
+                if (parasta_spele)
                 {
-                    iezime = new int[2] { m, n };
-                    laukums[m, n].matrica = iezimes_m;
-                    laukums[m, n].krasa = iezimeta_krasa;
-                    zimet_gabalinu(m, n);
+                    if (iezime == null)
+                    {
+                        iezime = new int[2] { m, n };
+                        laukums[m, n].matrica = iezimes_m;
+                        laukums[m, n].krasa = iezimeta_krasa;
+                        zimet_gabalinu(m, n);
+                    }
+                    else
+                    {
+                        samainit_gabalinus(iezime[0], iezime[1], m, n);
+
+                        laukums[m, n].matrica = aktiva_m;
+                        laukums[m, n].krasa = aktiva_krasa;
+                        zimet_gabalinu(m, n);
+                        laukums[iezime[0], iezime[1]].matrica = nokluseta_m;
+                        laukums[iezime[0], iezime[1]].krasa = rezga_krasa;
+                        zimet_gabalinu(iezime[0], iezime[1]);
+
+                        iezime = null;
+                        gajieni++;
+                        gajieni_txt.Text = "Gājieni: " + gajieni.ToString();
+                        vai_ir_salikta();
+                    }
                 }
                 else
                 {
-                    samainit_gabalinus(iezime[0], iezime[1], m, n);
-
-                    laukums[m, n].matrica = aktiva_m;
-                    laukums[m, n].krasa = aktiva_krasa;
-                    zimet_gabalinu(m, n);
-                    laukums[iezime[0], iezime[1]].matrica = nokluseta_m;
-                    laukums[iezime[0], iezime[1]].krasa = rezga_krasa;
-                    zimet_gabalinu(iezime[0], iezime[1]);
-
-                    iezime = null;
-                    gajieni++;
-                    gajieni_txt.Text = "Gājieni: " + gajieni.ToString();
-                    vai_ir_salikta();
+                    if ((laukums[m, n].matrica == aktiva_m) && (laukums[m, n].indekss != kopa))
+                    {
+                        laukumi_neaktivie();
+                        samainit_gabalinus(m, n, pedejais[0], pedejais[1]);
+                        pedejais = new int[2] { m, n };
+                        laukumi_aktivie();
+                    }
                 }
             }
         }
