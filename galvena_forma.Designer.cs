@@ -34,6 +34,8 @@
             this.statuss_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.gajieni_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.laiks_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.indekss_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.attels_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.izvelne = new System.Windows.Forms.MenuStrip();
             this.spēleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jaunaSpēleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,8 +54,7 @@
             this.radit_indeksus = new System.Windows.Forms.CheckBox();
             this.ieprieksejais = new System.Windows.Forms.Button();
             this.nakamais = new System.Windows.Forms.Button();
-            this.indekss_txt = new System.Windows.Forms.ToolStripStatusLabel();
-            this.attels_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.radit_prieksskatijuma_rezgi = new System.Windows.Forms.CheckBox();
             this.statusa_josla.SuspendLayout();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
@@ -66,9 +67,9 @@
             this.laiks_txt,
             this.indekss_txt,
             this.attels_txt});
-            this.statusa_josla.Location = new System.Drawing.Point(0, 390);
+            this.statusa_josla.Location = new System.Drawing.Point(0, 392);
             this.statusa_josla.Name = "statusa_josla";
-            this.statusa_josla.Size = new System.Drawing.Size(734, 22);
+            this.statusa_josla.Size = new System.Drawing.Size(727, 22);
             this.statusa_josla.TabIndex = 0;
             this.statusa_josla.Text = "Statusa josla";
             // 
@@ -92,6 +93,20 @@
             this.laiks_txt.Text = "Laiks: 0:00";
             this.laiks_txt.Visible = false;
             // 
+            // indekss_txt
+            // 
+            this.indekss_txt.Name = "indekss_txt";
+            this.indekss_txt.Size = new System.Drawing.Size(99, 17);
+            this.indekss_txt.Text = "Gabaliņa indekss: 0";
+            this.indekss_txt.Visible = false;
+            // 
+            // attels_txt
+            // 
+            this.attels_txt.Name = "attels_txt";
+            this.attels_txt.Size = new System.Drawing.Size(35, 17);
+            this.attels_txt.Text = "Attēls";
+            this.attels_txt.Visible = false;
+            // 
             // izvelne
             // 
             this.izvelne.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -101,7 +116,7 @@
             this.palīdzībaToolStripMenuItem});
             this.izvelne.Location = new System.Drawing.Point(0, 0);
             this.izvelne.Name = "izvelne";
-            this.izvelne.Size = new System.Drawing.Size(734, 24);
+            this.izvelne.Size = new System.Drawing.Size(727, 24);
             this.izvelne.TabIndex = 1;
             this.izvelne.Text = "Izvēlne";
             // 
@@ -168,7 +183,7 @@
             // iestatījumiToolStripMenuItem
             // 
             this.iestatījumiToolStripMenuItem.Name = "iestatījumiToolStripMenuItem";
-            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.iestatījumiToolStripMenuItem.Text = "&Iestatījumi...";
             // 
             // palīdzībaToolStripMenuItem
@@ -182,7 +197,7 @@
             // parToolStripMenuItem
             // 
             this.parToolStripMenuItem.Name = "parToolStripMenuItem";
-            this.parToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.parToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.parToolStripMenuItem.Text = "P&ar...";
             this.parToolStripMenuItem.Click += new System.EventHandler(this.parToolStripMenuItem_Click);
             // 
@@ -207,7 +222,7 @@
             // prieksskatijums
             // 
             this.prieksskatijums.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.prieksskatijums.Location = new System.Drawing.Point(522, 27);
+            this.prieksskatijums.Location = new System.Drawing.Point(515, 27);
             this.prieksskatijums.Name = "prieksskatijums";
             this.prieksskatijums.Size = new System.Drawing.Size(200, 150);
             this.prieksskatijums.TabIndex = 6;
@@ -219,11 +234,11 @@
             this.radit_rezgi.AutoSize = true;
             this.radit_rezgi.Checked = true;
             this.radit_rezgi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.radit_rezgi.Location = new System.Drawing.Point(522, 183);
+            this.radit_rezgi.Location = new System.Drawing.Point(515, 183);
             this.radit_rezgi.Name = "radit_rezgi";
             this.radit_rezgi.Size = new System.Drawing.Size(186, 17);
             this.radit_rezgi.TabIndex = 7;
-            this.radit_rezgi.Text = "Rādīt spēles laukuma režģa līnijas";
+            this.radit_rezgi.Text = "Rādīt režģa līnijas spēles laukumā";
             this.radit_rezgi.UseVisualStyleBackColor = true;
             this.radit_rezgi.Visible = false;
             this.radit_rezgi.CheckedChanged += new System.EventHandler(this.radit_rezgi_CheckedChanged);
@@ -232,7 +247,7 @@
             // 
             this.radit_indeksus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radit_indeksus.AutoSize = true;
-            this.radit_indeksus.Location = new System.Drawing.Point(522, 206);
+            this.radit_indeksus.Location = new System.Drawing.Point(515, 229);
             this.radit_indeksus.Name = "radit_indeksus";
             this.radit_indeksus.Size = new System.Drawing.Size(173, 17);
             this.radit_indeksus.TabIndex = 8;
@@ -244,9 +259,9 @@
             // ieprieksejais
             // 
             this.ieprieksejais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ieprieksejais.Location = new System.Drawing.Point(522, 362);
+            this.ieprieksejais.Location = new System.Drawing.Point(515, 362);
             this.ieprieksejais.Name = "ieprieksejais";
-            this.ieprieksejais.Size = new System.Drawing.Size(90, 25);
+            this.ieprieksejais.Size = new System.Drawing.Size(95, 25);
             this.ieprieksejais.TabIndex = 0;
             this.ieprieksejais.Text = "<< &Iepriekšējais";
             this.ieprieksejais.UseVisualStyleBackColor = true;
@@ -256,34 +271,34 @@
             // nakamais
             // 
             this.nakamais.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nakamais.Location = new System.Drawing.Point(632, 362);
+            this.nakamais.Location = new System.Drawing.Point(620, 362);
             this.nakamais.Name = "nakamais";
-            this.nakamais.Size = new System.Drawing.Size(90, 25);
+            this.nakamais.Size = new System.Drawing.Size(95, 25);
             this.nakamais.TabIndex = 0;
             this.nakamais.Text = "&Nākamais >>";
             this.nakamais.UseVisualStyleBackColor = true;
             this.nakamais.Visible = false;
             this.nakamais.Click += new System.EventHandler(this.nakamais_Click);
             // 
-            // indekss_txt
+            // radit_prieksskatijuma_rezgi
             // 
-            this.indekss_txt.Name = "indekss_txt";
-            this.indekss_txt.Size = new System.Drawing.Size(99, 17);
-            this.indekss_txt.Text = "Gabaliņa indekss: 0";
-            this.indekss_txt.Visible = false;
-            // 
-            // attels_txt
-            // 
-            this.attels_txt.Name = "attels_txt";
-            this.attels_txt.Size = new System.Drawing.Size(35, 17);
-            this.attels_txt.Text = "Attēls";
-            this.attels_txt.Visible = false;
+            this.radit_prieksskatijuma_rezgi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radit_prieksskatijuma_rezgi.AutoSize = true;
+            this.radit_prieksskatijuma_rezgi.Location = new System.Drawing.Point(515, 206);
+            this.radit_prieksskatijuma_rezgi.Name = "radit_prieksskatijuma_rezgi";
+            this.radit_prieksskatijuma_rezgi.Size = new System.Drawing.Size(186, 17);
+            this.radit_prieksskatijuma_rezgi.TabIndex = 9;
+            this.radit_prieksskatijuma_rezgi.Text = "Rādīt režģa līnijas priekšskatījumā";
+            this.radit_prieksskatijuma_rezgi.UseVisualStyleBackColor = true;
+            this.radit_prieksskatijuma_rezgi.Visible = false;
+            this.radit_prieksskatijuma_rezgi.CheckedChanged += new System.EventHandler(this.radit_prieksskatijuma_rezgi_CheckedChanged);
             // 
             // galvena_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 412);
+            this.ClientSize = new System.Drawing.Size(727, 414);
+            this.Controls.Add(this.radit_prieksskatijuma_rezgi);
             this.Controls.Add(this.nakamais);
             this.Controls.Add(this.ieprieksejais);
             this.Controls.Add(this.radit_indeksus);
@@ -336,5 +351,6 @@
         private System.Windows.Forms.ToolStripMenuItem pārlādētPuzlesAttēluToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel indekss_txt;
         private System.Windows.Forms.ToolStripStatusLabel attels_txt;
+        private System.Windows.Forms.CheckBox radit_prieksskatijuma_rezgi;
     }
 }

@@ -20,7 +20,7 @@ namespace puzlicis
         public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime, pedejais;
         public string minutes, sekundes;
-        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true;
+        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true, prieksskatijuma_rezgis = false;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, indeksu_krasa = Color.Red, piecpadsmit_krasa = SystemColors.Control, rezga_krasa = Color.Red;
         public static int rindu_sk = 5, kolonnu_sk = 5, kopa = 25;
 
@@ -269,7 +269,7 @@ namespace puzlicis
 
                 if (!notiek_spele)
                 {
-                     radit_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
+                     radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
                 }
 
                 generet_laukumu();
@@ -333,7 +333,6 @@ namespace puzlicis
             ImageAttributes efekti = new ImageAttributes();
             efekti.SetColorMatrix(laukums[i, j].matrica);
 
-            // TODO Iespējams var pievienot iestatījumu, kas ļauj nomainīt arī "Piecpadsmitā" lauciņa krāsu
             if ((parasta_spele == false) && (laukums[i, j].indekss == kopa))
             {
                 g.FillRectangle(new SolidBrush(piecpadsmit_krasa), kur_zimet);
@@ -361,16 +360,10 @@ namespace puzlicis
 
         public void zimet_laukumu()
         {
-            Graphics g = panelis_spele.CreateGraphics();
-
             for (int i = 0; i < rindu_sk; i++)
             {
                 for (int j = 0; j < kolonnu_sk; j++)
                 {
-                    Rectangle kur_zimet = new Rectangle(i * platums, j * augstums, platums, augstums);
-                    ImageAttributes efekti = new ImageAttributes();
-                    efekti.SetColorMatrix(laukums[i, j].matrica);
-
                     zimet_gabalinu(i, j);
                 }
             }
@@ -378,6 +371,27 @@ namespace puzlicis
             if (!parasta_spele)
             {
                 laukumi_piecpadsmit(aktiva_m, aktiva_krasa);
+            }
+        }
+
+        // TODO Tikt galā ar priekšskatījuma režģa attēlošanu
+        public void zimet_prieksskatijuma_rezgi()
+        {
+            Graphics g = prieksskatijums.CreateGraphics();
+
+            if (radit_prieksskatijuma_rezgi.Checked)
+            {
+                for (int i = 0; i < rindu_sk; i++)
+                {
+                    for (int j = 0; j < kolonnu_sk; j++)
+                    {
+                        g.DrawRectangle(new Pen(rezga_krasa, 1.0f), i * prieksskatijums.Width / rindu_sk, j * prieksskatijums.Height / kolonnu_sk, prieksskatijums.Width / rindu_sk, prieksskatijums.Height / kolonnu_sk);
+                    }
+                }
+            }
+            else
+            {
+
             }
         }
 
@@ -541,6 +555,13 @@ namespace puzlicis
         private void radit_rezgi_CheckedChanged(object sender, EventArgs e)
         {
             zimet_laukumu();
+        }
+
+        // TODO Tikt galā ar priekšskatījuma režģa attēlošanu
+        private void radit_prieksskatijuma_rezgi_CheckedChanged(object sender, EventArgs e)
+        {
+            prieksskatijuma_rezgis = radit_prieksskatijuma_rezgi.Checked;
+            zimet_prieksskatijuma_rezgi();
         }
 
         private void radit_indeksus_CheckedChanged(object sender, EventArgs e)
