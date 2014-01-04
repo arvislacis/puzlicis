@@ -39,6 +39,8 @@
             this.izvelne = new System.Windows.Forms.MenuStrip();
             this.spēleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jaunaSpēleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.atvērtSpēliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saglabātSpēliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atdalitajs1 = new System.Windows.Forms.ToolStripSeparator();
             this.izietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,8 +69,6 @@
             this.ieprieksejais = new System.Windows.Forms.Button();
             this.nakamais = new System.Windows.Forms.Button();
             this.radit_prieksskatijuma_rezgi = new System.Windows.Forms.CheckBox();
-            this.atvērtSpēliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saglabātSpēliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusa_josla.SuspendLayout();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
@@ -153,6 +153,23 @@
             this.jaunaSpēleToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.jaunaSpēleToolStripMenuItem.Text = "&Jauna spēle...";
             this.jaunaSpēleToolStripMenuItem.Click += new System.EventHandler(this.jaunaSpēleToolStripMenuItem_Click);
+            // 
+            // atvērtSpēliToolStripMenuItem
+            // 
+            this.atvērtSpēliToolStripMenuItem.Name = "atvērtSpēliToolStripMenuItem";
+            this.atvērtSpēliToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.atvērtSpēliToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.atvērtSpēliToolStripMenuItem.Text = "&Atvērt spēli...";
+            this.atvērtSpēliToolStripMenuItem.Click += new System.EventHandler(this.atvērtSpēliToolStripMenuItem_Click);
+            // 
+            // saglabātSpēliToolStripMenuItem
+            // 
+            this.saglabātSpēliToolStripMenuItem.Enabled = false;
+            this.saglabātSpēliToolStripMenuItem.Name = "saglabātSpēliToolStripMenuItem";
+            this.saglabātSpēliToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saglabātSpēliToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saglabātSpēliToolStripMenuItem.Text = "Sagla&bāt spēli...";
+            this.saglabātSpēliToolStripMenuItem.Click += new System.EventHandler(this.saglabātSpēliToolStripMenuItem_Click);
             // 
             // atdalitajs1
             // 
@@ -244,8 +261,9 @@
             // iestatījumiToolStripMenuItem
             // 
             this.iestatījumiToolStripMenuItem.Name = "iestatījumiToolStripMenuItem";
-            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.iestatījumiToolStripMenuItem.Text = "&Iestatījumi...";
+            this.iestatījumiToolStripMenuItem.Click += new System.EventHandler(this.iestatījumiToolStripMenuItem_Click);
             // 
             // palīdzībaToolStripMenuItem
             // 
@@ -400,22 +418,6 @@
             this.radit_prieksskatijuma_rezgi.UseVisualStyleBackColor = true;
             this.radit_prieksskatijuma_rezgi.Visible = false;
             this.radit_prieksskatijuma_rezgi.CheckedChanged += new System.EventHandler(this.radit_prieksskatijuma_rezgi_CheckedChanged);
-            // 
-            // atvērtSpēliToolStripMenuItem
-            // 
-            this.atvērtSpēliToolStripMenuItem.Name = "atvērtSpēliToolStripMenuItem";
-            this.atvērtSpēliToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.atvērtSpēliToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.atvērtSpēliToolStripMenuItem.Text = "&Atvērt spēli...";
-            this.atvērtSpēliToolStripMenuItem.Click += new System.EventHandler(this.atvērtSpēliToolStripMenuItem_Click);
-            // 
-            // saglabātSpēliToolStripMenuItem
-            // 
-            this.saglabātSpēliToolStripMenuItem.Name = "saglabātSpēliToolStripMenuItem";
-            this.saglabātSpēliToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saglabātSpēliToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.saglabātSpēliToolStripMenuItem.Text = "Sagla&bāt spēli...";
-            this.saglabātSpēliToolStripMenuItem.Click += new System.EventHandler(this.saglabātSpēliToolStripMenuItem_Click);
             // 
             // galvena_forma
             // 

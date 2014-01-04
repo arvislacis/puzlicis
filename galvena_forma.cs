@@ -21,8 +21,9 @@ namespace puzlicis
         public int attelu_sk, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime, pedejais;
         public string minutes, sekundes;
-        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true, sistemas_atteli = false, prieksskatijuma_rezgis = false;
+        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true, sistemas_atteli = false, prieksskatijuma_rezgis = false, p_jauna_spele = true, p_saglabat = true, p_rezultati = true;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, indeksu_krasa = Color.Red, piecpadsmit_krasa = SystemColors.Control, rezga_krasa = Color.Red;
+        public static Font fonts = new Font(DefaultFont, FontStyle.Regular);
         public static int rindu_sk = 5, kolonnu_sk = 5, kopa;
         public static List<string> s_atteli = new List<string>();
 
@@ -313,7 +314,7 @@ namespace puzlicis
 
                 if (!notiek_spele)
                 {
-                    radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
+                    radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = saglabātSpēliToolStripMenuItem.Enabled = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
                 }
 
                 generet_laukumu();
@@ -386,7 +387,7 @@ namespace puzlicis
             lasitajs.Close();
 
             ir_salikta = false;
-            notiek_spele = taimeris.Enabled = radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
+            notiek_spele = taimeris.Enabled = radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = saglabātSpēliToolStripMenuItem.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
             gajieni_txt.Text = "Gājieni: " + gajieni.ToString();
             laiks_txt.Text = "Laiks: " + laiks.ToString();
             statuss_txt.Text = "Notiek spēle...";
@@ -428,7 +429,14 @@ namespace puzlicis
                 ir_salikta = true;
                 statuss_txt.Text = "Puzle ir salikta!";
 
-                if (MessageBox.Show("Puzle ir veiksmīgi salikta.\n\nIzmantotie gājieni: " + gajieni.ToString() + ".\nPatērētais laiks: " + minutes + ":" + sekundes + ".\n\nVai vēlaties likt jaunu puzli?", "Puzle salikta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (p_rezultati)
+                {
+                    if (MessageBox.Show("Puzle ir veiksmīgi salikta.\n\nIzmantotie gājieni: " + gajieni.ToString() + ".\nPatērētais laiks: " + minutes + ":" + sekundes + ".\n\nVai vēlaties likt jaunu puzli?", "Puzle salikta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        sakt_jaunu_speli();
+                    }
+                }
+                else
                 {
                     sakt_jaunu_speli();
                 }
@@ -485,7 +493,7 @@ namespace puzlicis
 
             if (radit_indeksus.Checked)
             {
-                g.DrawString(laukums[i, j].indekss.ToString(), new Font(FontFamily.GenericSansSerif, augstums / 3), new SolidBrush(indeksu_krasa), i * platums, j * augstums);
+                g.DrawString(laukums[i, j].indekss.ToString(), new Font(fonts.FontFamily, augstums / 3, fonts.Style), new SolidBrush(indeksu_krasa), i * platums, j * augstums);
             }
         }
 
@@ -748,14 +756,20 @@ namespace puzlicis
         {
             if ((notiek_spele) && (!ir_salikta))
             {
-                if (MessageBox.Show("Vai tiešām vēlaties sākt jaunu spēli?", "Notiek spēle", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                if (p_jauna_spele)
+                {
+                    if (MessageBox.Show("Vai tiešām vēlaties sākt jaunu spēli?", "Notiek spēle", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                    {
+                        sakt_jaunu_speli();
+                    }
+                }
+                else
                 {
                     sakt_jaunu_speli();
                 }
             }
             else
             {
-
                 sakt_jaunu_speli();
             }
         }
@@ -792,7 +806,7 @@ namespace puzlicis
             File.Delete("palidziba.txt");
             File.Delete("iepriekseja_spele.txt");
 
-            if ((notiek_spele) && (!ir_salikta))
+            if ((notiek_spele) && (!ir_salikta) && (p_saglabat))
             {
                 spele_saglabat("iepriekseja_spele.txt");
             }
@@ -823,6 +837,30 @@ namespace puzlicis
         private void pēcPlatumaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mainit_formas_izmeru(this.Width, this.Width * 3 / 5);
+        }
+
+        private void iestatījumiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color rezga_v = rezga_krasa;
+
+            iestatijumu_forma forma = new iestatijumu_forma();
+            forma.ShowDialog();
+
+            if (notiek_spele)
+            {
+                for (int i = 0; i < rindu_sk; i++)
+                {
+                    for (int j = 0; j < kolonnu_sk; j++)
+                    {
+                        if (laukums[i, j].krasa == rezga_v)
+                        {
+                            laukums[i, j].krasa = rezga_krasa;
+                        }
+                    }
+                }
+
+                laukuma_dati();
+            }
         }
 
         private void apskatītPalīdzībuToolStripMenuItem_Click(object sender, EventArgs e)

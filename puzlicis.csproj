@@ -72,6 +72,12 @@
     <Compile Include="galvena_forma.Designer.cs">
       <DependentUpon>galvena_forma.cs</DependentUpon>
     </Compile>
+    <Compile Include="iestatijumu_forma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="iestatijumu_forma.Designer.cs">
+      <DependentUpon>iestatijumu_forma.cs</DependentUpon>
+    </Compile>
     <Compile Include="jaunas_speles_forma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="galvena_forma.resx">
       <DependentUpon>galvena_forma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="iestatijumu_forma.resx">
+      <DependentUpon>iestatijumu_forma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="jaunas_speles_forma.resx">
       <DependentUpon>jaunas_speles_forma.cs</DependentUpon>
