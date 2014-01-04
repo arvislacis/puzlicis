@@ -143,7 +143,7 @@
             this.krasas_pelektonu.Location = new System.Drawing.Point(126, 19);
             this.krasas_pelektonu.Name = "krasas_pelektonu";
             this.krasas_pelektonu.Size = new System.Drawing.Size(73, 17);
-            this.krasas_pelektonu.TabIndex = 4;
+            this.krasas_pelektonu.TabIndex = 1;
             this.krasas_pelektonu.TabStop = true;
             this.krasas_pelektonu.Text = "Pelēktoņu";
             this.krasas_pelektonu.UseVisualStyleBackColor = true;
@@ -155,7 +155,7 @@
             this.krasas_originalas.Location = new System.Drawing.Point(6, 19);
             this.krasas_originalas.Name = "krasas_originalas";
             this.krasas_originalas.Size = new System.Drawing.Size(71, 17);
-            this.krasas_originalas.TabIndex = 4;
+            this.krasas_originalas.TabIndex = 0;
             this.krasas_originalas.TabStop = true;
             this.krasas_originalas.Text = "Oriģinālās";
             this.krasas_originalas.UseVisualStyleBackColor = true;
@@ -180,7 +180,7 @@
             this.veids_piecpadsmit.Location = new System.Drawing.Point(117, 19);
             this.veids_piecpadsmit.Name = "veids_piecpadsmit";
             this.veids_piecpadsmit.Size = new System.Drawing.Size(82, 17);
-            this.veids_piecpadsmit.TabIndex = 3;
+            this.veids_piecpadsmit.TabIndex = 1;
             this.veids_piecpadsmit.TabStop = true;
             this.veids_piecpadsmit.Text = "Piecpadsmit";
             this.veids_piecpadsmit.UseVisualStyleBackColor = true;
@@ -192,7 +192,7 @@
             this.veids_parasta.Location = new System.Drawing.Point(6, 19);
             this.veids_parasta.Name = "veids_parasta";
             this.veids_parasta.Size = new System.Drawing.Size(61, 17);
-            this.veids_parasta.TabIndex = 3;
+            this.veids_parasta.TabIndex = 0;
             this.veids_parasta.TabStop = true;
             this.veids_parasta.Text = "Parastā";
             this.veids_parasta.UseVisualStyleBackColor = true;

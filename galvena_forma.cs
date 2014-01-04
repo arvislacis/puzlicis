@@ -210,6 +210,13 @@ namespace puzlicis
             laukuma_dati();
         }
 
+        public void mainit_formas_izmeru(int platums, int augstums)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.Width = platums;
+            this.Height = augstums;
+        }
+
         public void matricas(int i, int j, ColorMatrix matrica, Color krasa)
         {
             laukums[i, j].matrica = matrica;
@@ -268,7 +275,7 @@ namespace puzlicis
 
                 if (!notiek_spele)
                 {
-                     radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
+                    radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
                 }
 
                 generet_laukumu();
@@ -629,11 +636,9 @@ namespace puzlicis
 
         private void izietToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO Papildus kods, kas saglabā pašreizējo spēles stāvokli
             Application.Exit();
         }
 
-        // TODO Skata sadaļā pievienot vienumus puzles laukuma normalizēšanai - sākuma stāvoklī un 4:3 proporcijā
         private void attēlaPriekšskatījumsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             prieksskatijums_Click(sender, e);
@@ -642,6 +647,21 @@ namespace puzlicis
         private void pārlādētPuzlesAttēluToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelis_spele.Refresh();
+        }
+
+        private void sākotnējaisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainit_formas_izmeru(735, 441);
+        }
+
+        private void pēcAugstumaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainit_formas_izmeru(this.Height * 5 / 3, this.Height);
+        }
+
+        private void pēcPlatumaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainit_formas_izmeru(this.Width, this.Width * 3 / 5);
         }
 
         private void parToolStripMenuItem_Click(object sender, EventArgs e)
