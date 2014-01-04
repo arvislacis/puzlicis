@@ -16,13 +16,15 @@ namespace puzlicis
             OpenFileDialog ad = new OpenFileDialog();
             ad.Title = "Attēlu izvēle...";
             ad.Filter = "Visi atbalstītie attēlu formāti|*.bmp;*.gif;*.jpeg;*.jpg;*.png|Bitmap attēli (*.bmp)|*.bmp|GIF attēli (*.gif)|*.gif|JPEG attēli (*.jpg, *.jpeg)|*.jpg;*.jpeg|PNG attēli|*.png";
-            ad.AddExtension = ad.CheckPathExists = ad.CheckFileExists = true;
+            ad.AddExtension = ad.CheckPathExists = ad.CheckFileExists = ad.Multiselect = true;
 
             if (ad.ShowDialog() == DialogResult.OK)
             {
+                galvena_forma.s_atteli.Clear();
+
                 for (int i = 0; i < ad.FileNames.Length; i++)
                 {
-                    galvena_forma.s_atteli.Add(ad.FileNames[0]);
+                    galvena_forma.s_atteli.Add(ad.FileNames[i]);
                 }
             }
             else

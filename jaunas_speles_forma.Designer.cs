@@ -55,7 +55,7 @@
             this.sakt_speli.Name = "sakt_speli";
             this.sakt_speli.Size = new System.Drawing.Size(250, 23);
             this.sakt_speli.TabIndex = 7;
-            this.sakt_speli.Text = "Sākt spēli";
+            this.sakt_speli.Text = "&Sākt spēli";
             this.sakt_speli.UseVisualStyleBackColor = true;
             this.sakt_speli.Click += new System.EventHandler(this.sakt_speli_Click);
             // 
@@ -147,7 +147,7 @@
             this.krasas_pelektonu.Size = new System.Drawing.Size(73, 17);
             this.krasas_pelektonu.TabIndex = 1;
             this.krasas_pelektonu.TabStop = true;
-            this.krasas_pelektonu.Text = "Pelēktoņu";
+            this.krasas_pelektonu.Text = "Pe&lēktoņu";
             this.krasas_pelektonu.UseVisualStyleBackColor = true;
             // 
             // krasas_originalas
@@ -159,7 +159,7 @@
             this.krasas_originalas.Size = new System.Drawing.Size(71, 17);
             this.krasas_originalas.TabIndex = 0;
             this.krasas_originalas.TabStop = true;
-            this.krasas_originalas.Text = "Oriģinālās";
+            this.krasas_originalas.Text = "&Oriģinālās";
             this.krasas_originalas.UseVisualStyleBackColor = true;
             // 
             // puzles_veids_txt
@@ -184,7 +184,7 @@
             this.veids_piecpadsmit.Size = new System.Drawing.Size(82, 17);
             this.veids_piecpadsmit.TabIndex = 1;
             this.veids_piecpadsmit.TabStop = true;
-            this.veids_piecpadsmit.Text = "Piecpadsmit";
+            this.veids_piecpadsmit.Text = "Pie&cpadsmit";
             this.veids_piecpadsmit.UseVisualStyleBackColor = true;
             // 
             // veids_parasta
@@ -196,7 +196,7 @@
             this.veids_parasta.Size = new System.Drawing.Size(61, 17);
             this.veids_parasta.TabIndex = 0;
             this.veids_parasta.TabStop = true;
-            this.veids_parasta.Text = "Parastā";
+            this.veids_parasta.Text = "&Parastā";
             this.veids_parasta.UseVisualStyleBackColor = true;
             // 
             // no_sistemas
@@ -206,7 +206,7 @@
             this.no_sistemas.Name = "no_sistemas";
             this.no_sistemas.Size = new System.Drawing.Size(192, 17);
             this.no_sistemas.TabIndex = 5;
-            this.no_sistemas.Text = "Izvēlēties attēlus no datņu sistēmas";
+            this.no_sistemas.Text = "&Izvēlēties attēlus no datņu sistēmas";
             this.no_sistemas.UseVisualStyleBackColor = true;
             this.no_sistemas.CheckedChanged += new System.EventHandler(this.no_sistemas_CheckedChanged);
             // 
@@ -217,7 +217,7 @@
             this.izveleties_attelus.Name = "izveleties_attelus";
             this.izveleties_attelus.Size = new System.Drawing.Size(45, 23);
             this.izveleties_attelus.TabIndex = 6;
-            this.izveleties_attelus.Text = "...";
+            this.izveleties_attelus.Text = "&...";
             this.izveleties_attelus.UseVisualStyleBackColor = true;
             this.izveleties_attelus.Visible = false;
             this.izveleties_attelus.Click += new System.EventHandler(this.izveleties_attelus_Click);

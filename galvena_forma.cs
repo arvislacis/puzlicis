@@ -333,6 +333,93 @@ namespace puzlicis
             laukums[uz_i, uz_j] = tmp;
         }
 
+        public void spele_atvert(string nosaukums)
+        {
+            StreamReader lasitajs = new StreamReader(nosaukums);
+            string[] dati = lasitajs.ReadLine().Split('|');
+
+            if (dati[0].StartsWith("ER"))
+            {
+                attelu_sk = 25;
+                attela_id = int.Parse(dati[0].Remove(0, 2));
+            }
+            else
+            {
+                sistemas_atteli = true;
+                attelu_sk = 1;
+                s_atteli.Add(dati[0]);
+            }
+
+            rindu_sk = int.Parse(dati[1]);
+            kolonnu_sk = int.Parse(dati[2]);
+            kopa = rindu_sk * kolonnu_sk;
+            parasta_spele = bool.Parse(dati[3]);
+            originala_spele = bool.Parse(dati[4]);
+            gajieni = int.Parse(dati[5]);
+            laiks = int.Parse(dati[6]);
+
+            if (originala_spele)
+            {
+                nokluseta_m = vienibas_m;
+            }
+            else
+            {
+                nokluseta_m = pelektonu_m;
+            }
+
+            laukums = new gabalins[rindu_sk, kolonnu_sk];
+
+            for (int i = 0; i < rindu_sk; i++)
+            {
+                for (int j = 0; j < kolonnu_sk; j++)
+                {
+                    dati = lasitajs.ReadLine().Split('|');
+                    laukums[i, j] = new gabalins() { m = int.Parse(dati[0]), n = int.Parse(dati[1]), indekss = int.Parse(dati[2]), krasa = rezga_krasa, matrica = nokluseta_m };
+
+                    if ((int.Parse(dati[2]) == kopa) && (!parasta_spele))
+                    {
+                        pedejais = new int[2] { i, j };
+                    }
+                }
+            }
+
+            lasitajs.Close();
+
+            ir_salikta = false;
+            notiek_spele = taimeris.Enabled = radit_rezgi.Visible = radit_prieksskatijuma_rezgi.Visible = radit_indeksus.Visible = ieprieksejais.Visible = nakamais.Visible = gajieni_txt.Visible = laiks_txt.Visible = attels_txt.Visible = attēlaPriekšskatījumsToolStripMenuItem.Enabled = pārlādētPuzlesAttēluToolStripMenuItem.Enabled = true;
+            gajieni_txt.Text = "Gājieni: " + gajieni.ToString();
+            laiks_txt.Text = "Laiks: " + laiks.ToString();
+            statuss_txt.Text = "Notiek spēle...";
+
+            mainit_attelu(attela_id);
+        }
+
+        public void spele_saglabat(string nosaukums)
+        {
+            StreamWriter rakstitajs = new StreamWriter(nosaukums);
+
+            if (sistemas_atteli)
+            {
+                rakstitajs.Write(s_atteli[attela_id]);
+            }
+            else
+            {
+                rakstitajs.Write("ER" + attela_id);
+            }
+
+            rakstitajs.WriteLine("|{0}|{1}|{2}|{3}|{4}|{5}", rindu_sk, kolonnu_sk, parasta_spele, originala_spele, gajieni, laiks);
+
+            for (int i = 0; i < rindu_sk; i++)
+            {
+                for (int j = 0; j < kolonnu_sk; j++)
+                {
+                    rakstitajs.WriteLine("{0}|{1}|{2}", laukums[i, j].m, laukums[i, j].n, laukums[i, j].indekss);
+                }
+            }
+
+            rakstitajs.Close();
+        }
+
         public void vai_ir_salikta()
         {
             if (vai_ir_pec_kartas())
@@ -441,6 +528,10 @@ namespace puzlicis
         public galvena_forma()
         {
             InitializeComponent();
+
+            if (File.Exists("iepriekseja_spele.txt")) {
+                spele_atvert("iepriekseja_spele.txt");
+            }
         }
 
         private void galvena_forma_KeyDown(object sender, KeyEventArgs e)
@@ -669,10 +760,43 @@ namespace puzlicis
             }
         }
 
+        private void atvērtSpēliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ad = new OpenFileDialog();
+            ad.Title = "Atvērt spēli...";
+            ad.Filter = "Teksta datne (*.txt)|*.txt";
+            ad.AddExtension = ad.CheckPathExists = ad.CheckFileExists = true;
+
+            if (ad.ShowDialog() == DialogResult.OK)
+            {
+                spele_atvert(ad.FileName);
+            }
+        }
+
+        private void saglabātSpēliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sd = new SaveFileDialog();
+            sd.Title = "Saglabāt spēli...";
+            sd.Filter = "Teksta datne (*.txt)|*.txt";
+            sd.AddExtension = sd.CheckPathExists = true;
+
+            if (sd.ShowDialog() == DialogResult.OK)
+            {
+                spele_saglabat(sd.FileName);
+            }
+        }
+
         private void izietToolStripMenuItem_Click(object sender, EventArgs e)
         {
             File.Delete("atteli.txt");
             File.Delete("palidziba.txt");
+            File.Delete("iepriekseja_spele.txt");
+
+            if ((notiek_spele) && (!ir_salikta))
+            {
+                spele_saglabat("iepriekseja_spele.txt");
+            }
+
             Application.Exit();
         }
 
