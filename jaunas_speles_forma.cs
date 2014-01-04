@@ -11,28 +11,41 @@ namespace puzlicis
 {
     public partial class jaunas_speles_forma : Form
     {
+        public void atvert_attelus()
+        {
+            OpenFileDialog ad = new OpenFileDialog();
+            ad.Title = "Attēlu izvēle...";
+            ad.Filter = "Visi atbalstītie attēlu formāti|*.bmp;*.gif;*.jpeg;*.jpg;*.png|Bitmap attēli (*.bmp)|*.bmp|GIF attēli (*.gif)|*.gif|JPEG attēli (*.jpg, *.jpeg)|*.jpg;*.jpeg|PNG attēli|*.png";
+            ad.AddExtension = ad.CheckPathExists = ad.CheckFileExists = true;
+
+            if (ad.ShowDialog() == DialogResult.OK)
+            {
+                for (int i = 0; i < ad.FileNames.Length; i++)
+                {
+                    galvena_forma.s_atteli.Add(ad.FileNames[0]);
+                }
+            }
+            else
+            {
+                no_sistemas.Checked = false;
+            }
+        }
+
         public void jauna_spele()
         {
             galvena_forma.rindu_sk = (int)rindas.Value;
             galvena_forma.kolonnu_sk = (int)kolonnas.Value;
             galvena_forma.kopa = galvena_forma.rindu_sk * galvena_forma.kolonnu_sk;
+            galvena_forma.parasta_spele = veids_parasta.Checked;
+            galvena_forma.originala_spele = krasas_originalas.Checked;
 
-            if (veids_parasta.Checked)
+            if ((no_sistemas.Checked) && (galvena_forma.s_atteli.Count > 0))
             {
-                galvena_forma.parasta_spele = true;
+                galvena_forma.sistemas_atteli = true;
             }
             else
             {
-                galvena_forma.parasta_spele = false;
-            }
-
-            if (krasas_originalas.Checked)
-            {
-                galvena_forma.originala_spele = true;
-            }
-            else
-            {
-                galvena_forma.originala_spele = false;
+                galvena_forma.sistemas_atteli = false;
             }
 
             galvena_forma.jauna_spele = true;
@@ -64,6 +77,20 @@ namespace puzlicis
             {
                 krasas_pelektonu.Checked = true;
             }
+
+            if (galvena_forma.sistemas_atteli) {
+                no_sistemas.Checked = true;
+            }
+        }
+
+        private void no_sistemas_CheckedChanged(object sender, EventArgs e)
+        {
+            izveleties_attelus.Visible = no_sistemas.Checked;
+        }
+
+        private void izveleties_attelus_Click(object sender, EventArgs e)
+        {
+            atvert_attelus();
         }
 
         private void sakt_speli_Click(object sender, EventArgs e)

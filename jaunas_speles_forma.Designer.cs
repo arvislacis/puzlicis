@@ -39,6 +39,8 @@
             this.puzles_veids_txt = new System.Windows.Forms.GroupBox();
             this.veids_piecpadsmit = new System.Windows.Forms.RadioButton();
             this.veids_parasta = new System.Windows.Forms.RadioButton();
+            this.no_sistemas = new System.Windows.Forms.CheckBox();
+            this.izveleties_attelus = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.rindas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kolonnas)).BeginInit();
             this.puzles_krasas_txt.SuspendLayout();
@@ -49,10 +51,10 @@
             // 
             this.sakt_speli.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sakt_speli.Location = new System.Drawing.Point(12, 178);
+            this.sakt_speli.Location = new System.Drawing.Point(12, 208);
             this.sakt_speli.Name = "sakt_speli";
-            this.sakt_speli.Size = new System.Drawing.Size(205, 23);
-            this.sakt_speli.TabIndex = 5;
+            this.sakt_speli.Size = new System.Drawing.Size(250, 23);
+            this.sakt_speli.TabIndex = 7;
             this.sakt_speli.Text = "Sākt spēli";
             this.sakt_speli.UseVisualStyleBackColor = true;
             this.sakt_speli.Click += new System.EventHandler(this.sakt_speli_Click);
@@ -60,7 +62,7 @@
             // rindas
             // 
             this.rindas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rindas.Location = new System.Drawing.Point(167, 12);
+            this.rindas.Location = new System.Drawing.Point(212, 12);
             this.rindas.Maximum = new decimal(new int[] {
             20,
             0,
@@ -84,7 +86,7 @@
             // kolonnas
             // 
             this.kolonnas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kolonnas.Location = new System.Drawing.Point(167, 38);
+            this.kolonnas.Location = new System.Drawing.Point(212, 38);
             this.kolonnas.Maximum = new decimal(new int[] {
             20,
             0,
@@ -131,7 +133,7 @@
             this.puzles_krasas_txt.Controls.Add(this.krasas_originalas);
             this.puzles_krasas_txt.Location = new System.Drawing.Point(12, 122);
             this.puzles_krasas_txt.Name = "puzles_krasas_txt";
-            this.puzles_krasas_txt.Size = new System.Drawing.Size(205, 50);
+            this.puzles_krasas_txt.Size = new System.Drawing.Size(250, 50);
             this.puzles_krasas_txt.TabIndex = 4;
             this.puzles_krasas_txt.TabStop = false;
             this.puzles_krasas_txt.Text = "Puzles krāsas:";
@@ -140,7 +142,7 @@
             // 
             this.krasas_pelektonu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.krasas_pelektonu.AutoSize = true;
-            this.krasas_pelektonu.Location = new System.Drawing.Point(126, 19);
+            this.krasas_pelektonu.Location = new System.Drawing.Point(171, 19);
             this.krasas_pelektonu.Name = "krasas_pelektonu";
             this.krasas_pelektonu.Size = new System.Drawing.Size(73, 17);
             this.krasas_pelektonu.TabIndex = 1;
@@ -168,7 +170,7 @@
             this.puzles_veids_txt.Controls.Add(this.veids_parasta);
             this.puzles_veids_txt.Location = new System.Drawing.Point(12, 64);
             this.puzles_veids_txt.Name = "puzles_veids_txt";
-            this.puzles_veids_txt.Size = new System.Drawing.Size(205, 50);
+            this.puzles_veids_txt.Size = new System.Drawing.Size(250, 50);
             this.puzles_veids_txt.TabIndex = 3;
             this.puzles_veids_txt.TabStop = false;
             this.puzles_veids_txt.Text = "Puzles veids:";
@@ -177,7 +179,7 @@
             // 
             this.veids_piecpadsmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.veids_piecpadsmit.AutoSize = true;
-            this.veids_piecpadsmit.Location = new System.Drawing.Point(117, 19);
+            this.veids_piecpadsmit.Location = new System.Drawing.Point(162, 19);
             this.veids_piecpadsmit.Name = "veids_piecpadsmit";
             this.veids_piecpadsmit.Size = new System.Drawing.Size(82, 17);
             this.veids_piecpadsmit.TabIndex = 1;
@@ -197,11 +199,36 @@
             this.veids_parasta.Text = "Parastā";
             this.veids_parasta.UseVisualStyleBackColor = true;
             // 
+            // no_sistemas
+            // 
+            this.no_sistemas.AutoSize = true;
+            this.no_sistemas.Location = new System.Drawing.Point(12, 182);
+            this.no_sistemas.Name = "no_sistemas";
+            this.no_sistemas.Size = new System.Drawing.Size(192, 17);
+            this.no_sistemas.TabIndex = 5;
+            this.no_sistemas.Text = "Izvēlēties attēlus no datņu sistēmas";
+            this.no_sistemas.UseVisualStyleBackColor = true;
+            this.no_sistemas.CheckedChanged += new System.EventHandler(this.no_sistemas_CheckedChanged);
+            // 
+            // izveleties_attelus
+            // 
+            this.izveleties_attelus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.izveleties_attelus.Location = new System.Drawing.Point(217, 178);
+            this.izveleties_attelus.Name = "izveleties_attelus";
+            this.izveleties_attelus.Size = new System.Drawing.Size(45, 23);
+            this.izveleties_attelus.TabIndex = 6;
+            this.izveleties_attelus.Text = "...";
+            this.izveleties_attelus.UseVisualStyleBackColor = true;
+            this.izveleties_attelus.Visible = false;
+            this.izveleties_attelus.Click += new System.EventHandler(this.izveleties_attelus_Click);
+            // 
             // jaunas_speles_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(229, 213);
+            this.ClientSize = new System.Drawing.Size(274, 243);
+            this.Controls.Add(this.izveleties_attelus);
+            this.Controls.Add(this.no_sistemas);
             this.Controls.Add(this.puzles_veids_txt);
             this.Controls.Add(this.puzles_krasas_txt);
             this.Controls.Add(this.kolonnas_txt);
@@ -238,5 +265,7 @@
         private System.Windows.Forms.GroupBox puzles_veids_txt;
         private System.Windows.Forms.RadioButton veids_piecpadsmit;
         private System.Windows.Forms.RadioButton veids_parasta;
+        private System.Windows.Forms.CheckBox no_sistemas;
+        private System.Windows.Forms.Button izveleties_attelus;
     }
 }

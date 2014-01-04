@@ -116,6 +116,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="atteli\attels_0.jpg" />
     <EmbeddedResource Include="atteli\attels_1.jpg" />
     <EmbeddedResource Include="atteli\attels_2.jpg" />
     <EmbeddedResource Include="atteli\attels_3.jpg" />
@@ -140,7 +141,8 @@
     <EmbeddedResource Include="atteli\attels_22.jpg" />
     <EmbeddedResource Include="atteli\attels_23.jpg" />
     <EmbeddedResource Include="atteli\attels_24.jpg" />
-    <EmbeddedResource Include="atteli\attels_25.jpg" />
+    <EmbeddedResource Include="teksts\palidziba.txt" />
+    <EmbeddedResource Include="teksts\atteli.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

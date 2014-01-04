@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -17,12 +18,13 @@ namespace puzlicis
         public Bitmap attels;
         public bool ir_salikta = false, notiek_spele = false;
         public Image attela_resurss;
-        public int attelu_sk = 25, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
+        public int attelu_sk, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime, pedejais;
         public string minutes, sekundes;
-        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true, prieksskatijuma_rezgis = false;
+        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true, sistemas_atteli = false, prieksskatijuma_rezgis = false;
         public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, indeksu_krasa = Color.Red, piecpadsmit_krasa = SystemColors.Control, rezga_krasa = Color.Red;
-        public static int rindu_sk = 5, kolonnu_sk = 5, kopa = 25;
+        public static int rindu_sk = 5, kolonnu_sk = 5, kopa;
+        public static List<string> s_atteli = new List<string>();
 
         public ColorMatrix aktiva_m = new ColorMatrix(
             new float[][] {
@@ -65,6 +67,24 @@ namespace puzlicis
             public int indekss, m, n;
             public Color krasa;
             public ColorMatrix matrica;
+        }
+
+        public void atvert_teksta_datni(string nosaukums)
+        {
+            if (!File.Exists(nosaukums))
+            {
+                Stream dati = projekts.GetManifestResourceStream("puzlicis.teksts." + nosaukums);
+                FileStream datne = new FileStream(nosaukums, FileMode.Create, FileAccess.Write);
+
+                for (int i = 0; i < dati.Length; i++)
+                {
+                    datne.WriteByte((byte)dati.ReadByte());
+                }
+
+                datne.Close();
+            }
+
+            Process.Start(nosaukums);
         }
 
         public void gajienu_skaititajs()
@@ -163,7 +183,16 @@ namespace puzlicis
             }
             else
             {
-                attela_id = r.Next(1, attelu_sk);
+                if (sistemas_atteli)
+                {
+                    attelu_sk = s_atteli.Count;
+                }
+                else
+                {
+                    attelu_sk = 25;
+                }
+
+                attela_id = r.Next(0, attelu_sk);
                 mainit_attelu(attela_id);
             }
         }
@@ -204,9 +233,18 @@ namespace puzlicis
 
         public void mainit_attelu(int id)
         {
-            attela_resurss = Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id.ToString() + ".jpg"));
+            if (sistemas_atteli)
+            {
+                attela_resurss = Image.FromFile(s_atteli[id]);
+                attels_txt.Text = s_atteli[id];
+            }
+            else
+            {
+                attela_resurss = Image.FromStream(projekts.GetManifestResourceStream("puzlicis.atteli.attels_" + attela_id.ToString() + ".jpg"));
+                attels_txt.Text = (id + 1).ToString() + ". attēls";
+            }
+
             prieksskatijums.BackgroundImage = new Bitmap(attela_resurss, prieksskatijums.Width, prieksskatijums.Height);
-            attels_txt.Text = id.ToString() + ". attēls";
             laukuma_dati();
         }
 
@@ -450,6 +488,11 @@ namespace puzlicis
             }
         }
 
+        private void galvena_forma_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            izietToolStripMenuItem_Click(sender, e);
+        }
+
         private void taimeris_Tick(object sender, EventArgs e)
         {
             laiks++;
@@ -578,23 +621,15 @@ namespace puzlicis
 
         private void radit_indeksus_CheckedChanged(object sender, EventArgs e)
         {
-            if (radit_indeksus.Checked)
-            {
-                indekss_txt.Visible = true;
-            }
-            else
-            {
-                indekss_txt.Visible = false;
-            }
-
+            indekss_txt.Visible = radit_indeksus.Checked;
             zimet_laukumu();
         }
 
         private void ieprieksejais_Click(object sender, EventArgs e)
         {
-            if (attela_id == 1)
+            if (attela_id == 0)
             {
-                attela_id = attelu_sk;
+                attela_id = attelu_sk - 1;
             }
             else
             {
@@ -606,9 +641,9 @@ namespace puzlicis
 
         private void nakamais_Click(object sender, EventArgs e)
         {
-            if (attela_id == 25)
+            if (attela_id == attelu_sk - 1)
             {
-                attela_id = 1;
+                attela_id = 0;
             }
             else
             {
@@ -636,6 +671,8 @@ namespace puzlicis
 
         private void izietToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            File.Delete("atteli.txt");
+            File.Delete("palidziba.txt");
             Application.Exit();
         }
 
@@ -664,9 +701,29 @@ namespace puzlicis
             mainit_formas_izmeru(this.Width, this.Width * 3 / 5);
         }
 
+        private void apskatītPalīdzībuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            atvert_teksta_datni("palidziba.txt");
+        }
+
+        private void apskatītProgrammasPirmkoduToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/arvislacis/puzlicis");
+        }
+
+        private void izmantotieAttēliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            atvert_teksta_datni("atteli.txt");
+        }
+
+        private void sūtītAtsauksmiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("mailto:arvis.lacis@inbox.lv?subject=Puzlicis");
+        }
+
         private void parToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Puzlicis " + Application.ProductVersion + "\nVienkārša attēlu puzļu likšanas programma.\n\nLatvijas Lauksaimniecības universitāte\nInformācijas tehnoloģiju fakultāte\n2. kurss Programmēšana\n\n© 2013-2014 Arvis Lācis", "Par Puzlici", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Puzlicis " + Application.ProductVersion.ToString() + "\nVienkārša attēlu puzļu likšanas programma.\n\nLatvijas Lauksaimniecības universitāte\nInformācijas tehnoloģiju fakultāte\n2. kurss Programmēšana\n\n© 2013-2014 Arvis Lācis", "Par Puzlici", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -1,0 +1,4 @@
+﻿Puzlicis 1.0.0.0
+Vienkārša attēlu puzļu likšanas programma
+© 2013-2014 Arvis Lācis
+--------------------------------------------------
