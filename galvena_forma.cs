@@ -429,6 +429,23 @@ namespace puzlicis
                 ir_salikta = true;
                 statuss_txt.Text = "Puzle ir salikta!";
 
+                StreamWriter rakstitajs = new StreamWriter("rezultati.txt", true);
+                DateTime datums = DateTime.Now;
+                string formats = "yyyy.MM.dd.|hh:mm";
+
+                rakstitajs.Write("{0}|{1}|{2}|{3}|{4}|{5}|{6}|", datums.ToString(formats), parasta_spele, originala_spele, rindu_sk, kolonnu_sk, laiks, gajieni);
+
+                if (sistemas_atteli)
+                {
+                    rakstitajs.WriteLine("{0}", s_atteli[attela_id]);
+                }
+                else
+                {
+                    rakstitajs.WriteLine("{0}. attēls", attela_id + 1);
+                }
+
+                rakstitajs.Close();
+
                 if (p_rezultati)
                 {
                     if (MessageBox.Show("Puzle ir veiksmīgi salikta.\n\nIzmantotie gājieni: " + gajieni.ToString() + ".\nPatērētais laiks: " + minutes + ":" + sekundes + ".\n\nVai vēlaties likt jaunu puzli?", "Puzle salikta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
@@ -837,6 +854,19 @@ namespace puzlicis
         private void pēcPlatumaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mainit_formas_izmeru(this.Width, this.Width * 3 / 5);
+        }
+
+        private void rezultātiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("rezultati.txt"))
+            {
+                MessageBox.Show("Spēļu rezultāti pašlaik nav pieejami, jo nav salikta neviena puzle vai arī nav pieejama \"rezultati.txt\" datne.", "Rezultāti nav pieejami.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                rezultatu_forma forma = new rezultatu_forma();
+                forma.ShowDialog();
+            }
         }
 
         private void iestatījumiToolStripMenuItem_Click(object sender, EventArgs e)

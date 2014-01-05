@@ -38,27 +38,27 @@ namespace puzlicis
 
         private void rezga_krasa_Click(object sender, EventArgs e)
         {
-            krasas_izvele("cilne_noformejums", "rezga_krasa");
+            krasas_izvele("cilne_krasas", "rezga_krasa");
         }
 
         private void aktiva_krasa_Click(object sender, EventArgs e)
         {
-            krasas_izvele("cilne_noformejums", "aktiva_krasa");
+            krasas_izvele("cilne_krasas", "aktiva_krasa");
         }
 
         private void iezimeta_krasa_Click(object sender, EventArgs e)
         {
-            krasas_izvele("cilne_noformejums", "iezimeta_krasa");
+            krasas_izvele("cilne_krasas", "iezimeta_krasa");
         }
 
         private void indeksu_krasa_Click(object sender, EventArgs e)
         {
-            krasas_izvele("cilne_noformejums", "indeksu_krasa");
+            krasas_izvele("cilne_krasas", "indeksu_krasa");
         }
 
         private void piecpadsmit_krasa_Click(object sender, EventArgs e)
         {
-            krasas_izvele("cilne_noformejums", "piecpadsmit_krasa");
+            krasas_izvele("cilne_krasas", "piecpadsmit_krasa");
         }
 
         private void fonts_Click(object sender, EventArgs e)

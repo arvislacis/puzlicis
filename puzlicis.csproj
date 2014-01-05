@@ -64,6 +64,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\..\Desktop\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="galvena_forma.cs">
@@ -92,6 +95,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rezultatu_forma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rezultatu_forma.Designer.cs">
+      <DependentUpon>rezultatu_forma.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="galvena_forma.resx">
       <DependentUpon>galvena_forma.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +159,9 @@
     <EmbeddedResource Include="atteli\attels_22.jpg" />
     <EmbeddedResource Include="atteli\attels_23.jpg" />
     <EmbeddedResource Include="atteli\attels_24.jpg" />
+    <EmbeddedResource Include="rezultatu_forma.resx">
+      <DependentUpon>rezultatu_forma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="teksts\palidziba.txt" />
     <EmbeddedResource Include="teksts\atteli.txt" />
   </ItemGroup>
