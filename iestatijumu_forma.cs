@@ -11,6 +11,11 @@ namespace puzlicis
 {
     public partial class iestatijumu_forma : Form
     {
+        /// <summary>
+        /// Nomaina komponentes krāsu atkarībā no lietotāja izvēles.
+        /// </summary>
+        /// <param name="cilne">Cilnes identifikators, nosaukums.</param>
+        /// <param name="komponente">Komponentes identifikators, nosaukums.</param>
         public void krasas_izvele(string cilne, string komponente)
         {
             ColorDialog kd = new ColorDialog();

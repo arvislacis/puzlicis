@@ -11,6 +11,9 @@ namespace puzlicis
 {
     public partial class jaunas_speles_forma : Form
     {
+        /// <summary>
+        /// Pievieno sarakstam izvēlētos datņu sistēmas attēlus.
+        /// </summary>
         public void atvert_attelus()
         {
             OpenFileDialog ad = new OpenFileDialog();
@@ -33,6 +36,9 @@ namespace puzlicis
             }
         }
 
+        /// <summary>
+        /// Galvenajai formai padod jaunās spēles parametrus.
+        /// </summary>
         public void jauna_spele()
         {
             galvena_forma.rindu_sk = (int)rindas.Value;

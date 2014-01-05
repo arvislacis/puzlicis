@@ -63,6 +63,9 @@ namespace puzlicis
 
         public gabalins[,] laukums;
         public gabalins tmp;
+        /// <summary>
+        /// Puzles gabaliņš.
+        /// </summary>
         public class gabalins
         {
             public int indekss, m, n;
@@ -70,6 +73,10 @@ namespace puzlicis
             public ColorMatrix matrica;
         }
 
+        /// <summary>
+        /// Atver teksta datni noklusētajā teksta redaktorā. Tiek izmantots "atteli.txt" un "palidziba.txt" datņu atvēršanai.
+        /// </summary>
+        /// <param name="nosaukums">Teksta datnes nosaukums ar paplašinājumu, kuru nepieciešams atvērt.</param>
         public void atvert_teksta_datni(string nosaukums)
         {
             if (!File.Exists(nosaukums))
@@ -88,6 +95,9 @@ namespace puzlicis
             Process.Start(nosaukums);
         }
 
+        /// <summary>
+        /// Skaita gājienus un izvada statusa joslā gājienu skaitu.
+        /// </summary>
         public void gajienu_skaititajs()
         {
             gajieni++;
@@ -95,6 +105,9 @@ namespace puzlicis
             vai_ir_salikta();
         }
 
+        /// <summary>
+        /// Ģenerē puzles galveno laukumu, atkarībā no puzles veida un izmēra.
+        /// </summary>
         public void generet_laukumu()
         {
             laukums = new gabalins[rindu_sk, kolonnu_sk];
@@ -198,6 +211,9 @@ namespace puzlicis
             }
         }
 
+        /// <summary>
+        /// Iegūst informāciju par spēles laukumu (paneli), kas nepieciešama, lai uzzīmētu puzli. Funkcija pamatā tiek izsaukta tad, kad notiek formas izmēra maiņa.
+        /// </summary>
         public void laukuma_dati()
         {
             attels = new Bitmap(attela_resurss, panelis_spele.Width, panelis_spele.Height);
@@ -207,6 +223,11 @@ namespace puzlicis
             zimet_laukumu();
         }
 
+        /// <summary>
+        /// Iezīmē aktīvos (iespējamos) puzles gabaliņus ap "Piecpadsmito" puzles gabaliņu.
+        /// </summary>
+        /// <param name="matrica">Matrica, kas tiks izmantota gabaliņu iezīmēšanai.</param>
+        /// <param name="krasa">Krāsa, kas tiks izmantota aktīvā gabaliņa režģim.</param>
         public void laukumi_piecpadsmit(ColorMatrix matrica, Color krasa)
         {
             if (pedejais[0] > 0)
@@ -231,7 +252,11 @@ namespace puzlicis
 
             matricas(pedejais[0], pedejais[1], matrica, krasa);
         }
-
+        
+        /// <summary>
+        /// Maina puzles un priekšskatījuma attēlu.
+        /// </summary>
+        /// <param name="id">Attēla identifikators - no programmas resursiem vai lietotāja izvēlēto attēlu saraksta.</param>
         public void mainit_attelu(int id)
         {
             if (sistemas_atteli)
@@ -249,6 +274,11 @@ namespace puzlicis
             laukuma_dati();
         }
 
+        /// <summary>
+        /// Maina formas izmēru.
+        /// </summary>
+        /// <param name="platums">Jaunais formas platums.</param>
+        /// <param name="augstums">Jaunais formas augstums.</param>
         public void mainit_formas_izmeru(int platums, int augstums)
         {
             this.WindowState = FormWindowState.Normal;
@@ -256,6 +286,13 @@ namespace puzlicis
             this.Height = augstums;
         }
 
+        /// <summary>
+        /// Iestata puzles gabaliņam norādīto matricu un režģa krāsu.
+        /// </summary>
+        /// <param name="i">Gabaliņa rindas indekss.</param>
+        /// <param name="j">Gabaliņa kolonnas indekss.</param>
+        /// <param name="matrica">Krāsu matrica.</param>
+        /// <param name="krasa">Režģa krāsa.</param>
         public void matricas(int i, int j, ColorMatrix matrica, Color krasa)
         {
             laukums[i, j].matrica = matrica;
@@ -263,6 +300,11 @@ namespace puzlicis
             zimet_gabalinu(i, j);
         }
 
+        /// <summary>
+        /// Nosaka peles kursoram atbilstošo puzles gabaliņu.
+        /// </summary>
+        /// <param name="x">Peles kursora x koordināta.</param>
+        /// <param name="y">Peles kursora y koordināta.</param>
         public void noteikt_indeksus(int x, int y)
         {
             if (m_v != m)
@@ -294,6 +336,9 @@ namespace puzlicis
             }
         }
 
+        /// <summary>
+        /// Parāda jaunas spēles formu. Notīra iepriekšējās spēles datus.
+        /// </summary>
         public void sakt_jaunu_speli()
         {
             jauna_spele = false;
@@ -327,6 +372,13 @@ namespace puzlicis
             }
         }
 
+        /// <summary>
+        /// Samaina vietām divus puzles gabaliņus.
+        /// </summary>
+        /// <param name="no_i">Pirmā gabaliņa rindu indekss.</param>
+        /// <param name="no_j">Pirmā gabaliņa kolonnu indekss</param>
+        /// <param name="uz_i">Otrā gabaliņa rindu indekss.</param>
+        /// <param name="uz_j">Otrā gabaliņa kolonnu indekss.</param>
         public void samainit_gabalinus(int no_i, int no_j, int uz_i, int uz_j)
         {
             tmp = laukums[no_i, no_j];
@@ -334,6 +386,10 @@ namespace puzlicis
             laukums[uz_i, uz_j] = tmp;
         }
 
+        /// <summary>
+        /// Atver iepriekš saglabātu spēli.
+        /// </summary>
+        /// <param name="nosaukums">Atveramās spēles datnes nosaukums ar paplašinājumu.</param>
         public void spele_atvert(string nosaukums)
         {
             StreamReader lasitajs = new StreamReader(nosaukums);
@@ -395,6 +451,10 @@ namespace puzlicis
             mainit_attelu(attela_id);
         }
 
+        /// <summary>
+        /// Saglabā pašreizējo spēles stāvokli.
+        /// </summary>
+        /// <param name="nosaukums">Saglabājamās teksta datnes nosaukums ar paplašinājumu.</param>
         public void spele_saglabat(string nosaukums)
         {
             StreamWriter rakstitajs = new StreamWriter(nosaukums);
@@ -421,6 +481,9 @@ namespace puzlicis
             rakstitajs.Close();
         }
 
+        /// <summary>
+        /// Pārbauda vai puzle ir salikta.
+        /// </summary>
         public void vai_ir_salikta()
         {
             if (vai_ir_pec_kartas())
@@ -460,6 +523,10 @@ namespace puzlicis
             }
         }
 
+        /// <summary>
+        /// Pārbauda vai puzles gabaliņu indeksi ir pēc kārtas (pieaugošā secībā).
+        /// </summary>
+        /// <returns></returns>
         public bool vai_ir_pec_kartas()
         {
             int iepr_indekss = 0;
@@ -482,6 +549,11 @@ namespace puzlicis
             return true;
         }
 
+        /// <summary>
+        /// Zīmē puzles gabaliņu.
+        /// </summary>
+        /// <param name="i">Gabaliņa rindas indekss.</param>
+        /// <param name="j">Gabaliņa kolonnu indekss.</param>
         public void zimet_gabalinu(int i, int j)
         {
             Graphics g = panelis_spele.CreateGraphics();
@@ -514,6 +586,9 @@ namespace puzlicis
             }
         }
 
+        /// <summary>
+        /// Zīmē visu puzles laukumu un visus puzles gabaliņus.
+        /// </summary>
         public void zimet_laukumu()
         {
             for (int i = 0; i < rindu_sk; i++)
@@ -530,6 +605,9 @@ namespace puzlicis
             }
         }
 
+        /// <summary>
+        /// Zīmē režģi priekšskatījuma panelī.
+        /// </summary>
         public void zimet_prieksskatijuma_rezgi()
         {
             Graphics g = prieksskatijums.CreateGraphics();

@@ -21,6 +21,9 @@ namespace puzlicis
         public PointPairList piecpadsmit_org_p = new PointPairList();
         public PointPairList piecpadsmit_plk_p = new PointPairList();
 
+        /// <summary>
+        /// Zīmē rezultātu grafiku.
+        /// </summary>
         public void zimet_grafiku()
         {
             g = grafiks.GraphPane;
