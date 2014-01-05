@@ -1,4 +1,107 @@
 ﻿Puzlicis 1.0.0.0
 Vienkārša attēlu puzļu likšanas programma
-© 2013-2014 Arvis Lācis
---------------------------------------------------
+© 2013-2014 Arvis Lācis (arvis.lacis@inbox.lv)
+
+1. Jaunas spēles uzsākšana un jaunas spēles forma
+
+Lai sāktu jaunu spēli, atveriet izvēlni Spēle -> Jauna spēle...
+Pēc izvēlnes aktivizēšanas tiks atvērts formas logs, kurā būs iespējams norādīt šādus jaunās spēles parametrus:
+	1.1. "Rindu skaits" - vēlamais rindu skaits puzlē;
+	1.2. "Kolonnu skaits" - vēlamais kolonnu skaits puzlē;
+	1.3. "Puzles veids" - ļauj izvēlēties vienu no diviem puzles likšanas veidiem:
+		1.3.1. "Parastā" - nodrošina jebkuru divu puzles gabaliņu apmainīšanu vietām;
+		1.3.2. "Piecpadsmit" - nodrošina tikai iztrūkstošā un tam blakus esošo gabaliņu apmainīšanu vietām.
+	1.4. "Puzles krāsas" - ļauj izvēlēties vienu no diviem puzles likšanas krāsu režīmiem:
+		1.4.1. "Oriģinālā" - jaunās puzles gabaliņi būs oriģinālajās attēla krāsās;
+		1.4.2. "Pelēktoņu" - jaunās puzles gabaliņi būs pelēktoņu krāsās.
+	1.5. "Izvēlēties attēlus no datņu sistēmas" - atķeksējot šo izvēles rūtiņu blakus parādīsies spiedpoga ar
+	simboliem "...";
+		1.5.1. Izmantojot iepriekš minēto (1.5.) spiedpogu iespējams izvēlēties gan vienu, gan vairākus attēlus
+		no datora datņu sistēmas (ja nevēlaties likt kādu no 25 iebūvētajiem puzļu attēliem).
+Kad esat izvēlējies sev vēlamos spēles parametrus, nospiediet spiedpogu "Sākt spēli", lai uzsāktu puzles un tās
+gabaliņu ģenerēšanu, kā arī sāktu spēli.
+
+Jauno spēļu puzles tiek veidotas izmantojot gadījuma skaitļu ģenerātoru, tādēļ ir iespējamas situācijas, kad
+programma spēlē izmanto tādu pašu attēlu vai arī jaunizveidotajā spēles laukumā ir jau gandrīz salikts attēls.
+
+Izvēlētie jaunās spēles iestatījumi tiek saglabāti vienas programmas palaišanas sesijas ietvaros, tādēļ
+nākamreiz sākot jaunu spēli visi aprakstītie parametri būs tādi paši kā iepriekšējai spēlei.
+
+2. Jaunas spēles ierobežojumi
+
+Ierobežotā un dažādā datoru ekrāna laukuma, kā arī datoru veiktspējas dēļ, jaunām spēlēm nav iespējams iestatīt
+laukumaizmēru, kas lielāks par 20x20 puzles gabaliņiem. Minimālais spēles laukuma izmērs - 2x2 puzles gabaliņi.
+
+Izvēloties spēles laukuma izmēru, kas lielāks par 100 gabaliņiem (10x10 u.c.), programma izvadīs informatīvu
+paziņojumu ar jautājumu - vai tiešām vēlaties likt šādu puzli?
+
+3. Spēles stāvokļa saglabāšana un atvēršana
+
+Ja jums patīk pašreizējās puzles stāvoklis (puzles gabaliņu izkārtojums, parametri un attēls), bet jums attiecīgajā
+brīdī nav laika, lai turpinātu puzles salikšanu, tad esošās puzles stāvokli ir iespējams saglabāt, izmantojot
+izvēlni: Spēle -> Saglabāt spēli... un izvēloties saglabājamās spēles datnes atrašanās vietu un nosaukumu.
+
+Lai atvērtu iepriekš saglabātu spēles stāvokli un turpinātu puzles salikšanu, izmantojiet izvēlni:
+Spēle -> Atvērt spēli... un izvēlēties iepriekš saglabāto spēles datni.
+
+Spēles stāvoklis tiek saglabāts arī situācijā, kad aizverat programmu (datnē "iepriekseja_spele.txt"). Nākamreiz,
+kad atvērsiet programmu - programma nolasīs un automātiski atjaunos datnē esošo spēles stāvokli. Šīs datnes
+automātisku izveidošanu un atvēršanu var izslēgt programmas Iestatījumos (Rīki -> Iestatījumi).
+
+Iepriekš minētā spēles datne netiek veidota situācijā, kad aizveriet programmu ar saliktu puzli.
+
+4. Puzles salikšanas atvieglošana, sarežģīšana
+
+Ja jums ir radušās problēmas ar esošās puzles salikšanu, tad varat izmantot galvenajā spēles formā labajā pusē
+atrodamās iezīmes rūtiņas:
+	4.1. "Rādīt režģa līnijas spēles laukumā" - pēc noklusējuma šī iezīmes rūtiņa ir atķeksēta, ar tās palīdzību
+	iespējams galvenajā puzles likšanas laukumā parādīt režģa līnijas, kas nedaudz atvieglo orientēšanos spēles
+	laukumā;
+	4.2. "Rādīt režģa līnijas priekšskatījumā" - ļauj parādīt (vai slēpt) režģa līnijas arī mazajā attēla
+	priekšskatīšanas laukumā (panelī), kas atrodas galvenās formas augšējā labajā stūrī, virs šīs iezīmes rūtiņas;
+	4.3. "Rādīt puzles gabaliņu indeksus" - ļauj parādīt (vai slēpt) puzles gabaliņu indeksus, kas atbilst
+	gabaliņu secībai saliekamajā attēlā; indeksi tiek numurēti pa rindām, piemēram:
+
+	1 2 3
+	4 5 6
+	7 8 9
+
+Lai gūtu lielāku priekšstatu par saliekamo attēlu, varat veikt peles klikšķi uz puzles priekšskatījuma (gatavā
+attēla) laukuma, tādējādi atverot daudz lielāku saliekamā attēla priekšskatījumu. Šāda iespēja pieejama arī
+izvēlnē Skats -> Attēla priekšskatījums vai nospiežot taustiņu kombināciju Ctrl+P.
+
+Varat izmantot arī spiedpogas "<< Iepriekšējais" un "Nākamais >>", lai pārslēgtos starp programmā iebūvētajiem
+vai arī jūsu izvēlētajiem attēliem.
+
+5. Spēles laukuma izmēra maiņa
+
+Galveno spēles laukuma formu varat brīvi mainīt pēc saviem ieskatiem, tas ir, varat palielināt vai samazināt
+aktīvās spēles laukumu un puzles gabaliņu izmērus.
+
+Ja vēlaties atgriezties pie sākotnējā formas izmēra, izmantojot izvēlni Skats -> Pielāgot formas izmēru -> Sākotnējais
+vai arī nospiediet taustiņu kombināciju Ctrl+0.
+
+Izvēlnē Skats -> Pielāgot formas izmēru iespējams arī normalizēt formas izmēru pēc pašreizējā formas platuma
+vai augstuma, rezultātā puzles laukumā tiks saglabāta sākotnējā attēla proporcija (4:3).
+
+Puzles laukumu iespējams pārlādēt ar taustiņu kombināciju Ctrl+R vai arī izmantojot izvēlni Skats -> Pārlādet puzles
+attēlu.
+
+6. Rīku izvēlne
+
+Rīku izvēlne iespējams piekļūt pabeigto spēļu rezultātu apkopojumam: Rīki -> Rezultāti. Rezultātus iespējams
+atlasīt pēc 1.3.1.-1.4.2. punktos minētajiem spēles parametriem.
+
+Ar izvēlni Rīki -> Iestatījumi... var piekļūt programmas iestatījumu sadaļai, kurā iespējams pielāgot gan
+programmā izmantotās krāsas, gan indeksu fontu, gan arī dažus paziņojumu rādīšanas parametrus.
+
+Iestatījumu sadaļā veiktās un saglabātās izmaiņas tiek saglabātas lietotāja datora reģistrā, tādēļ tās saglabājas
+arī pēc programmas aizvēršanas un tiek atjaunotas nākamreiz atverot programmu.
+
+Lai atiestatītu iestatījumus uz to sākotnējām, noklusētajām vērtībām - iestatījumu formā nospiediet spiedpogu
+"Atiestatīt iestatījumus", bet pēc tam nospiediet spiedpogu "Apstiprināt izmaiņas un aizvērt".
+
+7. Palīdzības izvēlne
+
+Palīdzības izvēlnē iespējams piekļūt šim teksta dokumentam, kā arī iespējams apskatīt citu informāciju un resursus,
+kas saistīti ar programmas izveidošanu, programmā izmantotajiem attēliem.

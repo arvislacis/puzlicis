@@ -21,9 +21,9 @@ namespace puzlicis
         public int attelu_sk, attela_id, platums, augstums, m, n, m_v, n_v, gajieni, laiks;
         public int[] iezime, pedejais;
         public string minutes, sekundes;
-        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true, sistemas_atteli = false, prieksskatijuma_rezgis = false, p_jauna_spele = true, p_saglabat = true, p_rezultati = true;
-        public static Color aktiva_krasa = Color.White, iezimeta_krasa = Color.Green, indeksu_krasa = Color.Red, piecpadsmit_krasa = SystemColors.Control, rezga_krasa = Color.Red;
-        public static Font fonts = new Font(DefaultFont, FontStyle.Regular);
+        public static bool jauna_spele = false, parasta_spele = true, originala_spele = true, sistemas_atteli = false, prieksskatijuma_rezgis = false, p_jauna_spele = Properties.Settings.Default.jauna_spele, p_saglabat = Properties.Settings.Default.saglabat, p_rezultati = Properties.Settings.Default.rezultati;
+        public static Color aktiva_krasa = Properties.Settings.Default.aktiva_krasa, iezimeta_krasa = Properties.Settings.Default.iezimeta_krasa, indeksu_krasa = Properties.Settings.Default.indeksu_krasa, piecpadsmit_krasa = Properties.Settings.Default.piecpadsmit_krasa, rezga_krasa = Properties.Settings.Default.rezga_krasa;
+        public static Font fonts = Properties.Settings.Default.fonts;
         public static int rindu_sk = 5, kolonnu_sk = 5, kopa;
         public static List<string> s_atteli = new List<string>();
 

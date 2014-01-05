@@ -22,5 +22,113 @@ namespace puzlicis.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color rezga_krasa {
+            get {
+                return ((global::System.Drawing.Color)(this["rezga_krasa"]));
+            }
+            set {
+                this["rezga_krasa"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color aktiva_krasa {
+            get {
+                return ((global::System.Drawing.Color)(this["aktiva_krasa"]));
+            }
+            set {
+                this["aktiva_krasa"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Green")]
+        public global::System.Drawing.Color iezimeta_krasa {
+            get {
+                return ((global::System.Drawing.Color)(this["iezimeta_krasa"]));
+            }
+            set {
+                this["iezimeta_krasa"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color indeksu_krasa {
+            get {
+                return ((global::System.Drawing.Color)(this["indeksu_krasa"]));
+            }
+            set {
+                this["indeksu_krasa"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Control")]
+        public global::System.Drawing.Color piecpadsmit_krasa {
+            get {
+                return ((global::System.Drawing.Color)(this["piecpadsmit_krasa"]));
+            }
+            set {
+                this["piecpadsmit_krasa"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt")]
+        public global::System.Drawing.Font fonts {
+            get {
+                return ((global::System.Drawing.Font)(this["fonts"]));
+            }
+            set {
+                this["fonts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool jauna_spele {
+            get {
+                return ((bool)(this["jauna_spele"]));
+            }
+            set {
+                this["jauna_spele"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool saglabat {
+            get {
+                return ((bool)(this["saglabat"]));
+            }
+            set {
+                this["saglabat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool rezultati {
+            get {
+                return ((bool)(this["rezultati"]));
+            }
+            set {
+                this["rezultati"] = value;
+            }
+        }
     }
 }

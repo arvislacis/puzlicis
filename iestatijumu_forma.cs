@@ -25,15 +25,15 @@ namespace puzlicis
         {
             InitializeComponent();
 
-            rezga_krasa.BackColor = galvena_forma.rezga_krasa;
-            aktiva_krasa.BackColor = galvena_forma.aktiva_krasa;
-            iezimeta_krasa.BackColor = galvena_forma.iezimeta_krasa;
-            indeksu_krasa.BackColor = galvena_forma.indeksu_krasa;
-            piecpadsmit_krasa.BackColor = galvena_forma.piecpadsmit_krasa;
-            fonts.Font = galvena_forma.fonts;
-            jauna_spele.Checked = galvena_forma.p_jauna_spele;
-            saglabat.Checked = galvena_forma.p_saglabat;
-            rezultati.Checked = galvena_forma.p_rezultati;
+            rezga_krasa.BackColor = Properties.Settings.Default.rezga_krasa;
+            aktiva_krasa.BackColor = Properties.Settings.Default.aktiva_krasa;
+            iezimeta_krasa.BackColor = Properties.Settings.Default.iezimeta_krasa;
+            indeksu_krasa.BackColor = Properties.Settings.Default.indeksu_krasa;
+            piecpadsmit_krasa.BackColor = Properties.Settings.Default.piecpadsmit_krasa;
+            fonts.Font = Properties.Settings.Default.fonts;
+            jauna_spele.Checked = Properties.Settings.Default.jauna_spele;
+            saglabat.Checked = Properties.Settings.Default.saglabat;
+            rezultati.Checked = Properties.Settings.Default.rezultati;
         }
 
         private void rezga_krasa_Click(object sender, EventArgs e)
@@ -73,16 +73,17 @@ namespace puzlicis
 
         private void apstiprinat_Click(object sender, EventArgs e)
         {
-            galvena_forma.rezga_krasa = rezga_krasa.BackColor;
-            galvena_forma.aktiva_krasa = aktiva_krasa.BackColor;
-            galvena_forma.iezimeta_krasa = iezimeta_krasa.BackColor;
-            galvena_forma.indeksu_krasa = indeksu_krasa.BackColor;
-            galvena_forma.piecpadsmit_krasa = piecpadsmit_krasa.BackColor;
-            galvena_forma.fonts = fonts.Font;
-            galvena_forma.p_jauna_spele = jauna_spele.Checked;
-            galvena_forma.p_saglabat = saglabat.Checked;
-            galvena_forma.p_rezultati = rezultati.Checked;
+            Properties.Settings.Default.rezga_krasa = galvena_forma.rezga_krasa = rezga_krasa.BackColor;
+            Properties.Settings.Default.aktiva_krasa = galvena_forma.aktiva_krasa = aktiva_krasa.BackColor;
+            Properties.Settings.Default.iezimeta_krasa = galvena_forma.iezimeta_krasa = iezimeta_krasa.BackColor;
+            Properties.Settings.Default.indeksu_krasa = galvena_forma.indeksu_krasa = indeksu_krasa.BackColor;
+            Properties.Settings.Default.piecpadsmit_krasa = galvena_forma.piecpadsmit_krasa = piecpadsmit_krasa.BackColor;
+            Properties.Settings.Default.fonts = galvena_forma.fonts = fonts.Font;
+            Properties.Settings.Default.jauna_spele = galvena_forma.p_jauna_spele = jauna_spele.Checked;
+            Properties.Settings.Default.saglabat = galvena_forma.p_saglabat = saglabat.Checked;
+            Properties.Settings.Default.rezultati = galvena_forma.p_rezultati = rezultati.Checked;
 
+            Properties.Settings.Default.Save();
             this.Close();
         }
 

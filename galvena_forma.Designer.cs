@@ -52,6 +52,8 @@
             this.pēcAugstumaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pēcPlatumaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rīkiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rezultātiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.atdalitajs3 = new System.Windows.Forms.ToolStripSeparator();
             this.iestatījumiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.palīdzībaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apskatītPalīdzībuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,8 +71,6 @@
             this.ieprieksejais = new System.Windows.Forms.Button();
             this.nakamais = new System.Windows.Forms.Button();
             this.radit_prieksskatijuma_rezgi = new System.Windows.Forms.CheckBox();
-            this.rezultātiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.atdalitajs3 = new System.Windows.Forms.ToolStripSeparator();
             this.statusa_josla.SuspendLayout();
             this.izvelne.SuspendLayout();
             this.SuspendLayout();
@@ -262,10 +262,22 @@
             this.rīkiToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.rīkiToolStripMenuItem.Text = "&Rīki";
             // 
+            // rezultātiToolStripMenuItem
+            // 
+            this.rezultātiToolStripMenuItem.Name = "rezultātiToolStripMenuItem";
+            this.rezultātiToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.rezultātiToolStripMenuItem.Text = "R&ezultāti";
+            this.rezultātiToolStripMenuItem.Click += new System.EventHandler(this.rezultātiToolStripMenuItem_Click);
+            // 
+            // atdalitajs3
+            // 
+            this.atdalitajs3.Name = "atdalitajs3";
+            this.atdalitajs3.Size = new System.Drawing.Size(133, 6);
+            // 
             // iestatījumiToolStripMenuItem
             // 
             this.iestatījumiToolStripMenuItem.Name = "iestatījumiToolStripMenuItem";
-            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iestatījumiToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.iestatījumiToolStripMenuItem.Text = "&Iestatījumi...";
             this.iestatījumiToolStripMenuItem.Click += new System.EventHandler(this.iestatījumiToolStripMenuItem_Click);
             // 
@@ -283,7 +295,8 @@
             // apskatītPalīdzībuToolStripMenuItem
             // 
             this.apskatītPalīdzībuToolStripMenuItem.Name = "apskatītPalīdzībuToolStripMenuItem";
-            this.apskatītPalīdzībuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.apskatītPalīdzībuToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.apskatītPalīdzībuToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.apskatītPalīdzībuToolStripMenuItem.Text = "S&katīt palīdzību";
             this.apskatītPalīdzībuToolStripMenuItem.Click += new System.EventHandler(this.apskatītPalīdzībuToolStripMenuItem_Click);
             // 
@@ -294,7 +307,7 @@
             this.apskatītProgrammasPirmkoduToolStripMenuItem,
             this.sūtītAtsauksmiToolStripMenuItem});
             this.resursiToolStripMenuItem.Name = "resursiToolStripMenuItem";
-            this.resursiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resursiToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.resursiToolStripMenuItem.Text = "&Resursi";
             // 
             // izmantotieAttēliToolStripMenuItem
@@ -321,12 +334,12 @@
             // atdalitajs4
             // 
             this.atdalitajs4.Name = "atdalitajs4";
-            this.atdalitajs4.Size = new System.Drawing.Size(149, 6);
+            this.atdalitajs4.Size = new System.Drawing.Size(161, 6);
             // 
             // parToolStripMenuItem
             // 
             this.parToolStripMenuItem.Name = "parToolStripMenuItem";
-            this.parToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.parToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.parToolStripMenuItem.Text = "P&ar...";
             this.parToolStripMenuItem.Click += new System.EventHandler(this.parToolStripMenuItem_Click);
             // 
@@ -422,18 +435,6 @@
             this.radit_prieksskatijuma_rezgi.UseVisualStyleBackColor = true;
             this.radit_prieksskatijuma_rezgi.Visible = false;
             this.radit_prieksskatijuma_rezgi.CheckedChanged += new System.EventHandler(this.radit_prieksskatijuma_rezgi_CheckedChanged);
-            // 
-            // rezultātiToolStripMenuItem
-            // 
-            this.rezultātiToolStripMenuItem.Name = "rezultātiToolStripMenuItem";
-            this.rezultātiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rezultātiToolStripMenuItem.Text = "R&ezultāti";
-            this.rezultātiToolStripMenuItem.Click += new System.EventHandler(this.rezultātiToolStripMenuItem_Click);
-            // 
-            // atdalitajs3
-            // 
-            this.atdalitajs3.Name = "atdalitajs3";
-            this.atdalitajs3.Size = new System.Drawing.Size(149, 6);
             // 
             // galvena_forma
             // 
